@@ -1,0 +1,125 @@
+/* Estilos Gerais */
+QMainWindow {
+    background-color: #f0f2f5; /* Fundo claro */
+    color: #333333;
+}
+
+QWidget {
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    color: #333333;
+}
+
+/* Botões */
+QPushButton {
+    background-color: #007bff; /* Azul primário */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+QPushButton:hover {
+    background-color: #0056b3; /* Azul mais escuro no hover */
+}
+
+QPushButton:pressed {
+    background-color: #004085;
+}
+
+QPushButton:disabled {
+    background-color: #cccccc;
+    color: #666666;
+}
+
+/* Campos de Texto e ComboBox */
+QLineEdit, QComboBox, QSpinBox {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: white;
+}
+
+QLineEdit:focus, QComboBox:focus, QSpinBox:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Labels */
+QLabel {
+    color: #495057;
+    padding-bottom: 2px;
+}
+
+/* Tabela */
+QTableWidget {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    gridline-color: #e9ecef;
+    selection-background-color: #b3d7ff; /* Azul claro para seleção */
+    selection-color: #333333;
+    border-radius: 5px;
+}
+
+QTableWidget::item {
+    padding: 5px;
+}
+
+QHeaderView::section {
+    background-color: #e9ecef; /* Cabeçalho da tabela */
+    color: #495057;
+    padding: 5px;
+    border: 1px solid #dee2e6;
+    font-weight: bold;
+}
+
+QHeaderView::section:horizontal {
+    border-bottom: 2px solid #007bff;
+}
+
+/* List Widget (para Gerenciar Marcas) */
+QListWidget {
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+QListWidget::item {
+    padding: 5px;
+}
+
+QListWidget::item:selected {
+    background-color: #b3d7ff;
+    color: #333333;
+}
+
+/* Radio Buttons */
+QRadioButton {
+    spacing: 5px;
+}
+
+QRadioButton::indicator {
+    width: 13px;
+    height: 13px;
+    border-radius: 7px;
+    border: 1px solid #ced4da;
+    background-color: white;
+}
+
+QRadioButton::indicator:checked {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+}
+
+/* Mensagens de Diálogo */
+QMessageBox {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+QMessageBox QLabel {
+    color: #333333;
+}
