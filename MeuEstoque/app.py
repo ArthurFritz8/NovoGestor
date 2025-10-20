@@ -1,6 +1,12 @@
 import sys
 import os
 from PyQt6.QtWidgets import QApplication
+
+# Adiciona o diretório raiz do projeto ao sys.path para resolver imports
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 from MeuEstoque.ui.main_window import MainWindow
 from MeuEstoque.database.database_manager import DatabaseManager
 

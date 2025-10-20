@@ -1,119 +1,181 @@
 /* Estilos Gerais */
 QMainWindow {
-    background-color: #f0f2f5; /* Fundo claro */
-    color: #333333;
+    background-color: #FFFFFF; /* Fundo branco principal */
+    color: #333333; /* Texto escuro */
 }
 
 QWidget {
-    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 10pt;
     color: #333333;
+    background-color: #FFFFFF;
+}
+
+/* Títulos de Módulo */
+QLabel#moduleTitle {
+    font-size: 18pt;
+    font-weight: bold;
+    color: #1976D2; /* Azul para títulos */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #E0E0E0; /* Borda sutil */
+}
+
+/* GroupBox */
+QGroupBox {
+    font-weight: bold;
+    color: #424242;
+    margin-top: 10px;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    padding-top: 15px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px;
+    color: #1976D2;
+}
+
+/* Menu Lateral (QListWidget) */
+QListWidget#sidebar {
+    background-color: #F5F5F5; /* Cinza muito claro para a sidebar */
+    border: none;
+    padding: 10px 0;
+}
+
+QListWidget#sidebar::item {
+    padding: 12px 15px; /* Padding aumentado */
+    color: #333333;
+    border-bottom: 1px solid #E0E0E0; /* Borda sutil entre itens */
+}
+
+QListWidget#sidebar::item:hover {
+    background-color: #E0E0E0; /* Cinza claro no hover */
+}
+
+QListWidget#sidebar::item:selected {
+    background-color: #1976D2; /* Azul para item selecionado */
+    color: white;
+    border-left: 5px solid #1565C0; /* Borda de destaque mais escura */
+    padding-left: 10px; /* Ajustar padding devido à borda */
 }
 
 /* Botões */
 QPushButton {
-    background-color: #007bff; /* Azul primário */
+    background-color: #1976D2; /* Azul primário */
     color: white;
     border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
+    padding: 8px 16px;
+    border-radius: 4px;
     font-weight: bold;
     min-width: 100px;
 }
 
 QPushButton:hover {
-    background-color: #0056b3; /* Azul mais escuro no hover */
+    background-color: #1565C0; /* Azul mais escuro no hover */
 }
 
 QPushButton:pressed {
-    background-color: #004085;
+    background-color: #0D47A1;
 }
 
 QPushButton:disabled {
-    background-color: #cccccc;
-    color: #666666;
+    background-color: #BDBDBD; /* Cinza para desabilitado */
+    color: #757575;
 }
 
 /* Estilos específicos para botões */
-#addProductButton {
-    background-color: #28a745; /* Verde para adicionar */
+#addProductButton, #addBrandButton, #addSupplierButton, #addPurchaseButton, #confirmPaymentButton, #saveButton {
+    background-color: #4CAF50; /* Verde para adicionar/salvar */
 }
-#addProductButton:hover {
-    background-color: #218838;
+#addProductButton:hover, #addBrandButton:hover, #addSupplierButton:hover, #addPurchaseButton:hover, #confirmPaymentButton:hover, #saveButton:hover {
+    background-color: #388E3C;
 }
-#addProductButton:pressed {
-    background-color: #1e7e34;
-}
-
-#deleteProductButton {
-    background-color: #dc3545; /* Vermelho para excluir */
-}
-#deleteProductButton:hover {
-    background-color: #c82333;
-}
-#deleteProductButton:pressed {
-    background-color: #bd2130;
+#addProductButton:pressed, #addBrandButton:pressed, #addSupplierButton:pressed, #addPurchaseButton:pressed, #confirmPaymentButton:pressed, #saveButton:pressed {
+    background-color: #2E7D32;
 }
 
-#editProductButton {
-    background-color: #ffc107; /* Amarelo/Laranja para editar */
-    color: #333333; /* Cor do texto para contraste */
+#deleteProductButton, #deleteBrandButton, #deleteSupplierButton {
+    background-color: #F44336; /* Vermelho para excluir */
 }
-#editProductButton:hover {
-    background-color: #e0a800;
+#deleteProductButton:hover, #deleteBrandButton:hover, #deleteSupplierButton:hover {
+    background-color: #D32F2F;
 }
-#editProductButton:pressed {
-    background-color: #c69500;
+#deleteProductButton:pressed, #deleteBrandButton:pressed, #deleteSupplierButton:pressed {
+    background-color: #C62828;
+}
+
+#editProductButton, #editBrandButton, #editSupplierButton, #editPurchaseButton {
+    background-color: #FF9800; /* Laranja para editar/atualizar */
+    color: white;
+}
+#editProductButton:hover, #editBrandButton:hover, #editSupplierButton:hover, #editPurchaseButton:hover {
+    background-color: #F57C00;
+}
+#editProductButton:pressed, #editBrandButton:pressed, #editSupplierButton:pressed, #editPurchaseButton:pressed {
+    background-color: #EF6C00;
 }
 
 #moveStockButton {
-    background-color: #17a2b8; /* Azul ciano para movimentar estoque */
+    background-color: #673AB7; /* Roxo para movimentar estoque */
 }
 #moveStockButton:hover {
-    background-color: #138496;
+    background-color: #5E35B1;
 }
 #moveStockButton:pressed {
-    background-color: #117a8b;
+    background-color: #512DA8;
 }
 
-#manageBrandsButton {
-    background-color: #6c757d; /* Cinza para gerenciar marcas */
+#cancelButton {
+    background-color: #9E9E9E; /* Cinza para cancelar */
 }
-#manageBrandsButton:hover {
-    background-color: #5a6268;
+#cancelButton:hover {
+    background-color: #757575;
 }
-#manageBrandsButton:pressed {
-    background-color: #545b62;
+#cancelButton:pressed {
+    background-color: #616161;
+}
+
+#payAccountButton {
+    background-color: #00BCD4; /* Azul turquesa para pagar */
+}
+#payAccountButton:hover {
+    background-color: #00ACC1;
+}
+#payAccountButton:pressed {
+    background-color: #0097A7;
 }
 
 /* Campos de Texto e ComboBox */
-QLineEdit, QComboBox, QSpinBox {
-    border: 1px solid #ced4da;
+QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox, QDateEdit {
+    border: 1px solid #BDBDBD;
     border-radius: 4px;
-    padding: 5px;
-    background-color: white;
+    padding: 8px;
+    background-color: #FFFFFF;
+    color: #333333;
 }
 
-QLineEdit:focus, QComboBox:focus, QSpinBox:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+QLineEdit:focus, QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus, QDateEdit:focus {
+    border-color: #1976D2; /* Borda azul no foco */
 }
 
 /* Labels */
 QLabel {
-    color: #495057;
+    color: #424242;
     padding-bottom: 2px;
 }
 
 /* Tabela */
 QTableWidget {
-    background-color: white;
-    border: 1px solid #dee2e6;
-    gridline-color: #e9ecef;
-    selection-background-color: #b3d7ff; /* Azul claro para seleção */
-    selection-color: #333333;
-    border-radius: 5px;
-    alternate-background-color: #f8f9fa; /* Cor para linhas alternadas (efeito zebrado) */
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    gridline-color: #EEEEEE;
+    selection-background-color: #1976D2;
+    selection-color: white;
+    border-radius: 4px;
+    alternate-background-color: #F5F5F5; /* Cinza muito claro para linhas alternadas */
+    color: #333333;
 }
 
 QTableWidget::item {
@@ -121,29 +183,30 @@ QTableWidget::item {
 }
 
 /* Estilo para linhas com estoque baixo */
-QTableWidget::item.low-stock {
-    background-color: #fff3cd; /* Amarelo claro para alerta de estoque baixo */
-    color: #856404; /* Cor do texto para contraste */
+QTableWidget::item[whats-this="low-stock"] {
+    background-color: #FFEBEE; /* Vermelho muito claro para fundo */
+    color: #C62828; /* Vermelho escuro para texto */
 }
 
 QHeaderView::section {
-    background-color: #e9ecef; /* Cabeçalho da tabela */
-    color: #495057;
-    padding: 5px;
-    border: 1px solid #dee2e6;
+    background-color: #F5F5F5;
+    color: #424242;
+    padding: 8px;
+    border: 1px solid #E0E0E0;
     font-weight: bold;
 }
 
 QHeaderView::section:horizontal {
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #1976D2;
 }
 
 /* List Widget (para Gerenciar Marcas) */
 QListWidget {
-    background-color: white;
-    border: 1px solid #ced4da;
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
     border-radius: 4px;
     padding: 5px;
+    color: #333333;
 }
 
 QListWidget::item {
@@ -151,31 +214,32 @@ QListWidget::item {
 }
 
 QListWidget::item:selected {
-    background-color: #b3d7ff;
-    color: #333333;
+    background-color: #1976D2;
+    color: white;
 }
 
 /* Radio Buttons */
 QRadioButton {
     spacing: 5px;
+    color: #424242;
 }
 
 QRadioButton::indicator {
     width: 13px;
     height: 13px;
     border-radius: 7px;
-    border: 1px solid #ced4da;
-    background-color: white;
+    border: 1px solid #BDBDBD;
+    background-color: #FFFFFF;
 }
 
 QRadioButton::indicator:checked {
-    background-color: #007bff;
-    border: 1px solid #007bff;
+    background-color: #1976D2;
+    border: 1px solid #1976D2;
 }
 
 /* Mensagens de Diálogo */
 QMessageBox {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     color: #333333;
 }
 

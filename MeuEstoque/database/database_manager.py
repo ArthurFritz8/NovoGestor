@@ -41,6 +41,63 @@ class DatabaseManager:
                 )
             """)
             self.cursor.execute("""
+                CREATE TABLE IF NOT EXISTS fornecedores (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    nome TEXT NOT NULL UNIQUE,
+                    contato TEXT,
+                    telefone TEXT,
+                    email TEXT,
+                    endereco TEXT
+                )
+            """)
+            self.cursor.execute("""
+                CREATE TABLE IF NOT EXISTS compras (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    fornecedor_id INTEGER NOT NULL,
+                    data_emissao TEXT NOT NULL,
+                    data_entrega TEXT,
+                    prazo_entrega TEXT,
+                    subtotal REAL NOT NULL DEFAULT 0.0,
+                    desconto REAL NOT NULL DEFAULT 0.0,
+                    frete REAL NOT NULL DEFAULT 0.0,
+                    total_final REAL NOT NULL DEFAULT 0.0,
+                    observacao TEXT,
+                    status_pagamento TEXT NOT NULL DEFAULT 'Pendente', -- Novo campo para status de pagamento da compra
+                    FOREIGN KEY (fornecedor_id) REFERENCES fornecedores(id) ON DELETE CASCADE
+                )
+            """)
+            # Adicionar a coluna status_pagamento se ela não existir (para compatibilidade com DBs existentes)
+            self.cursor.execute("""
+                PRAGMA table_info(compras);
+            """)
+            columns = [col[1] for col in self.cursor.fetchall()]
+            if 'status_pagamento' not in columns:
+                self.cursor.execute("""
+                    ALTER TABLE compras ADD COLUMN status_pagamento TEXT NOT NULL DEFAULT 'Pendente';
+                """)
+            self.cursor.execute("""
+                CREATE TABLE IF NOT EXISTS itens_compra (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    compra_id INTEGER NOT NULL,
+                    produto_id INTEGER NOT NULL,
+                    quantidade INTEGER NOT NULL,
+                    preco_unitario REAL NOT NULL,
+                    FOREIGN KEY (compra_id) REFERENCES compras(id) ON DELETE CASCADE,
+                    FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE
+                )
+            """)
+            self.cursor.execute("""
+                CREATE TABLE IF NOT EXISTS contas_a_pagar (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    compra_id INTEGER NOT NULL,
+                    data_vencimento TEXT NOT NULL,
+                    valor REAL NOT NULL,
+                    valor_pago REAL NOT NULL DEFAULT 0.0,
+                    status TEXT NOT NULL DEFAULT 'Pendente', -- Pendente, Pago, Parcialmente Pago
+                    FOREIGN KEY (compra_id) REFERENCES compras(id) ON DELETE CASCADE
+                )
+            """)
+            self.cursor.execute("""
                 CREATE TABLE IF NOT EXISTS movimentacoes (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     produto_id INTEGER,
@@ -69,8 +126,6 @@ class DatabaseManager:
             "Toyota", "Honda", "Renault", "Jeep", "Mercedes-Benz",
             "BMW", "Audi", "Nissan", "Kia", "Peugeot"
         ]
-        # Limpa as marcas existentes antes de adicionar as novas, se o banco de dados estiver vazio
-        self.cursor.execute("DELETE FROM marcas WHERE id NOT IN (SELECT marca_id FROM produtos WHERE marca_id IS NOT NULL)")
         for brand_name in initial_brands:
             try:
                 self.cursor.execute("INSERT OR IGNORE INTO marcas (nome) VALUES (?)", (brand_name,))
@@ -95,6 +150,18 @@ class DatabaseManager:
             print(f"Erro ao adicionar marca: {e}")
             return False
 
+    def update_marca(self, marca_id, novo_nome):
+        try:
+            self.cursor.execute("UPDATE marcas SET nome = ? WHERE id = ?", (novo_nome, marca_id))
+            self.conn.commit()
+            return True
+        except sqlite3.IntegrityError:
+            print(f"Marca '{novo_nome}' já existe.")
+            return False
+        except sqlite3.Error as e:
+            print(f"Erro ao atualizar marca: {e}")
+            return False
+
     def get_marcas(self):
         self.cursor.execute("SELECT id, nome FROM marcas ORDER BY nome")
         return self.cursor.fetchall()
@@ -110,6 +177,74 @@ class DatabaseManager:
 
     def marca_has_products(self, marca_id):
         self.cursor.execute("SELECT COUNT(*) FROM produtos WHERE marca_id = ?", (marca_id,))
+        return self.cursor.fetchone()[0] > 0
+
+    # Métodos para Fornecedores
+    def add_fornecedor(self, nome, contato, telefone, email, endereco):
+        try:
+            self.cursor.execute(
+                "INSERT INTO fornecedores (nome, contato, telefone, email, endereco) VALUES (?, ?, ?, ?, ?)",
+                (nome, contato, telefone, email, endereco)
+            )
+            self.conn.commit()
+            return True
+        except sqlite3.IntegrityError:
+            print(f"Fornecedor '{nome}' já existe.")
+            return False
+        except sqlite3.Error as e:
+            print(f"Erro ao adicionar fornecedor: {e}")
+            return False
+
+    def get_fornecedores(self, search_term=""):
+        query = "SELECT id, nome, contato, telefone, email, endereco FROM fornecedores WHERE nome LIKE ? ORDER BY nome"
+        self.cursor.execute(query, (f"%{search_term}%",))
+        return self.cursor.fetchall()
+
+    def get_fornecedor_by_id(self, fornecedor_id):
+        self.cursor.execute("SELECT id, nome, contato, telefone, email, endereco FROM fornecedores WHERE id = ?", (fornecedor_id,))
+        return self.cursor.fetchone()
+
+    def update_fornecedor(self, fornecedor_id, nome, contato, telefone, email, endereco):
+        try:
+            self.cursor.execute(
+                """
+                UPDATE fornecedores
+                SET nome = ?, contato = ?, telefone = ?, email = ?, endereco = ?
+                WHERE id = ?
+                """,
+                (nome, contato, telefone, email, endereco, fornecedor_id)
+            )
+            self.conn.commit()
+            return True
+        except sqlite3.IntegrityError:
+            print(f"Fornecedor '{nome}' já existe para outro registro.")
+            return False
+        except sqlite3.Error as e:
+            print(f"Erro ao atualizar fornecedor: {e}")
+            return False
+
+    def delete_fornecedor(self, fornecedor_id):
+        try:
+            self.conn.execute("BEGIN TRANSACTION")
+            
+            self.cursor.execute("SELECT id FROM compras WHERE fornecedor_id = ?", (fornecedor_id,))
+            compras_ids = [row[0] for row in self.cursor.fetchall()]
+            
+            for compra_id in compras_ids:
+                self.cursor.execute("DELETE FROM itens_compra WHERE compra_id = ?", (compra_id,))
+                self.cursor.execute("DELETE FROM contas_a_pagar WHERE compra_id = ?", (compra_id,))
+            
+            self.cursor.execute("DELETE FROM compras WHERE fornecedor_id = ?", (fornecedor_id,))
+            self.cursor.execute("DELETE FROM fornecedores WHERE id = ?", (fornecedor_id,))
+            self.conn.commit()
+            return True
+        except sqlite3.Error as e:
+            self.conn.rollback()
+            print(f"Erro ao deletar fornecedor: {e}")
+            return False
+
+    def fornecedor_has_compras(self, fornecedor_id):
+        self.cursor.execute("SELECT COUNT(*) FROM compras WHERE fornecedor_id = ?", (fornecedor_id,))
         return self.cursor.fetchone()[0] > 0
 
     # Métodos para Produtos
@@ -164,12 +299,22 @@ class DatabaseManager:
 
     def delete_produto(self, produto_id):
         try:
+            self.conn.execute("BEGIN TRANSACTION")
+            
+            self.cursor.execute("DELETE FROM itens_compra WHERE produto_id = ?", (produto_id,))
+            self.cursor.execute("DELETE FROM movimentacoes WHERE produto_id = ?", (produto_id,))
+            self.cursor.execute("DELETE FROM product_images WHERE product_id = ?", (produto_id,))
             self.cursor.execute("DELETE FROM produtos WHERE id = ?", (produto_id,))
             self.conn.commit()
             return True
         except sqlite3.Error as e:
+            self.conn.rollback()
             print(f"Erro ao deletar produto: {e}")
             return False
+
+    def produto_has_compras(self, produto_id):
+        self.cursor.execute("SELECT COUNT(*) FROM itens_compra WHERE produto_id = ?", (produto_id,))
+        return self.cursor.fetchone()[0] > 0
 
     def update_produto_quantity(self, produto_id, quantidade_movimentada, tipo_movimentacao, observacao="", foto_path=None):
         try:
@@ -195,6 +340,119 @@ class DatabaseManager:
             return True
         except sqlite3.Error as e:
             print(f"Erro ao atualizar quantidade do produto: {e}")
+            return False
+
+    # Métodos para Compras
+    def add_compra(self, fornecedor_id, data_emissao, data_entrega, prazo_entrega, subtotal, desconto, frete, total_final, observacao, status_pagamento='Pendente'):
+        try:
+            self.cursor.execute(
+                """
+                INSERT INTO compras (fornecedor_id, data_emissao, data_entrega, prazo_entrega, subtotal, desconto, frete, total_final, observacao, status_pagamento)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (fornecedor_id, data_emissao, data_entrega, prazo_entrega, subtotal, desconto, frete, total_final, observacao, status_pagamento)
+            )
+            self.conn.commit()
+            return self.cursor.lastrowid # Retorna o ID da compra inserida
+        except sqlite3.Error as e:
+            print(f"Erro ao adicionar compra: {e}")
+            return None
+
+    def add_item_compra(self, compra_id, produto_id, quantidade, preco_unitario):
+        try:
+            self.cursor.execute(
+                "INSERT INTO itens_compra (compra_id, produto_id, quantidade, preco_unitario) VALUES (?, ?, ?, ?)",
+                (compra_id, produto_id, quantidade, preco_unitario)
+            )
+            self.conn.commit()
+            return True
+        except sqlite3.Error as e:
+            print(f"Erro ao adicionar item de compra: {e}")
+            return False
+
+    def get_compras(self, search_term=""):
+        query = """
+            SELECT c.id, f.nome, c.data_emissao, c.total_final, c.status_pagamento
+            FROM compras c
+            JOIN fornecedores f ON c.fornecedor_id = f.id
+            WHERE f.nome LIKE ? OR c.data_emissao LIKE ? OR c.status_pagamento LIKE ?
+            ORDER BY c.data_emissao DESC
+        """
+        self.cursor.execute(query, (f"%{search_term}%", f"%{search_term}%", f"%{search_term}%"))
+        return self.cursor.fetchall()
+
+    def get_compra_details(self, compra_id):
+        self.cursor.execute(
+            """
+            SELECT c.id, f.nome, c.data_emissao, c.data_entrega, c.prazo_entrega,
+                   c.subtotal, c.desconto, c.frete, c.total_final, c.observacao, c.status_pagamento
+            FROM compras c
+            JOIN fornecedores f ON c.fornecedor_id = f.id
+            WHERE c.id = ?
+            """,
+            (compra_id,)
+        )
+        compra = self.cursor.fetchone()
+
+        self.cursor.execute(
+            """
+            SELECT ic.produto_id, p.nome_produto, ic.quantidade, ic.preco_unitario
+            FROM itens_compra ic
+            JOIN produtos p ON ic.produto_id = p.id
+            WHERE ic.compra_id = ?
+            """,
+            (compra_id,)
+        )
+        itens = self.cursor.fetchall()
+        return compra, itens
+
+    def delete_compra(self, compra_id):
+        try:
+            self.cursor.execute("DELETE FROM compras WHERE id = ?", (compra_id,))
+            self.conn.commit()
+            return True
+        except sqlite3.Error as e:
+            print(f"Erro ao deletar compra: {e}")
+            return False
+
+    # Métodos para Contas a Pagar
+    def add_conta_a_pagar(self, compra_id, data_vencimento, valor, valor_pago=0.0, status='Pendente'):
+        try:
+            self.cursor.execute(
+                """
+                INSERT INTO contas_a_pagar (compra_id, data_vencimento, valor, valor_pago, status)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (compra_id, data_vencimento, valor, valor_pago, status)
+            )
+            self.conn.commit()
+            return True
+        except sqlite3.Error as e:
+            print(f"Erro ao adicionar conta a pagar: {e}")
+            return False
+
+    def get_contas_a_pagar(self, search_term=""):
+        query = """
+            SELECT cap.id, f.nome, c.data_emissao, cap.data_vencimento, cap.valor, cap.valor_pago, cap.status
+            FROM contas_a_pagar cap
+            JOIN compras c ON cap.compra_id = c.id
+            JOIN fornecedores f ON c.fornecedor_id = f.id
+            WHERE f.nome LIKE ? OR cap.data_vencimento LIKE ? OR cap.status LIKE ?
+            ORDER BY cap.data_vencimento ASC
+        """
+        self.cursor.execute(query, (f"%{search_term}%", f"%{search_term}%", f"%{search_term}%"))
+        return self.cursor.fetchall()
+
+    def update_conta_a_pagar_status(self, conta_id, valor_pago, status):
+        try:
+            self.cursor.execute(
+                "UPDATE contas_a_pagar SET valor_pago = ?, status = ? WHERE id = ?",
+                (valor_pago, status, conta_id)
+            )
+            self.conn.commit()
+            return True
+        except sqlite3.Error as e:
+            print(f"Erro ao atualizar status da conta a pagar: {e}")
             return False
 
     # Métodos para Movimentações
@@ -264,3 +522,7 @@ class DatabaseManager:
     def get_total_brands_count(self):
         self.cursor.execute("SELECT COUNT(*) FROM marcas")
         return self.cursor.fetchone()[0]
+
+    def get_all_fornecedores_for_combobox(self):
+        self.cursor.execute("SELECT id, nome FROM fornecedores ORDER BY nome")
+        return self.cursor.fetchall()

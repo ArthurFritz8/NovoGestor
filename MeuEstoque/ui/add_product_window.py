@@ -198,22 +198,34 @@ class AddProductWindow(QDialog):
                 os.makedirs(product_images_dir, exist_ok=True)
                 logging.debug(f"Diretório de imagens do produto garantido: {product_images_dir}")
 
-                # Limpar imagens antigas antes de adicionar as novas em modo de edição
+                # Limpar imagens antigas (DB e arquivos físicos) antes de adicionar as novas em modo de edição
                 if self.product_id and self.save_btn.text() == "Atualizar":
-                    self.db.delete_product_images(self.product_id)
-                    # TODO: Remover arquivos físicos das imagens antigas se necessário
+                    existing_image_paths = self.db.get_product_images(self.product_id)
+                    if self.db.delete_product_images(self.product_id):
+                        for img_path in existing_image_paths:
+                            try:
+                                if os.path.exists(img_path):
+                                    os.remove(img_path)
+                                    logging.debug(f"Arquivo de imagem antigo removido: {img_path}")
+                            except OSError as e:
+                                logging.error(f"Erro ao remover arquivo de imagem antigo {img_path}: {e}")
+                    else:
+                        logging.error(f"Erro ao deletar registros de imagens antigas do produto {self.product_id} no DB.")
 
                 for original_path in self.selected_image_paths:
-                    if os.path.exists(original_path):
-                        file_name = os.path.basename(original_path)
-                        destination_path = os.path.join(product_images_dir, file_name)
-                        shutil.copy(original_path, destination_path)
-                        
-                        absolute_destination_path = os.path.abspath(destination_path)
-                        self.db.add_product_image(self.product_id, absolute_destination_path)
-                        logging.debug(f"Imagem copiada e caminho salvo no DB: {absolute_destination_path}")
-                    else:
-                        logging.error(f"Erro: Arquivo de imagem original não encontrado: {original_path}")
+                    try:
+                        if os.path.exists(original_path):
+                            file_name = os.path.basename(original_path)
+                            destination_path = os.path.join(product_images_dir, file_name)
+                            shutil.copy(original_path, destination_path)
+                            
+                            absolute_destination_path = os.path.abspath(destination_path)
+                            self.db.add_product_image(self.product_id, absolute_destination_path)
+                            logging.debug(f"Imagem copiada e caminho salvo no DB: {absolute_destination_path}")
+                        else:
+                            logging.error(f"Erro: Arquivo de imagem original não encontrado: {original_path}")
+                    except Exception as e:
+                        logging.error(f"Erro ao copiar ou salvar imagem {original_path}: {e}")
             
             QMessageBox.information(self, "Sucesso", f"Produto {action_message} com sucesso!")
             self.product_changed.emit() # Emitir o novo sinal

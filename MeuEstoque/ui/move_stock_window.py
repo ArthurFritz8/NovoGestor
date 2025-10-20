@@ -185,9 +185,12 @@ class MoveStockWindow(QDialog):
             QMessageBox.warning(self, "Erro de Validação", "A quantidade deve ser maior que zero.")
             return
 
-        if self.db.update_produto_quantity(self.current_product_id, quantidade, tipo, observacao): # Removido foto_path
-            QMessageBox.information(self, "Sucesso", f"Movimentação de {tipo} registrada com sucesso!")
-            self.stock_changed.emit() # Emitir o novo sinal
-            self.accept()
-        else:
-            QMessageBox.critical(self, "Erro", "Não foi possível registrar a movimentação. Verifique se a quantidade de saída não excede o estoque atual.")
+        try:
+            if self.db.update_produto_quantity(self.current_product_id, quantidade, tipo, observacao): # Removido foto_path
+                QMessageBox.information(self, "Sucesso", f"Movimentação de {tipo} registrada com sucesso!")
+                self.stock_changed.emit() # Emitir o novo sinal
+                self.accept()
+            else:
+                QMessageBox.critical(self, "Erro", "Não foi possível registrar a movimentação. Verifique se a quantidade de saída não excede o estoque atual.")
+        except Exception as e:
+            QMessageBox.critical(self, "Erro", f"Ocorreu um erro ao registrar a movimentação: {e}")
