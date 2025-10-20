@@ -34,6 +34,58 @@ QPushButton:disabled {
     color: #666666;
 }
 
+/* Estilos específicos para botões */
+#addProductButton {
+    background-color: #28a745; /* Verde para adicionar */
+}
+#addProductButton:hover {
+    background-color: #218838;
+}
+#addProductButton:pressed {
+    background-color: #1e7e34;
+}
+
+#deleteProductButton {
+    background-color: #dc3545; /* Vermelho para excluir */
+}
+#deleteProductButton:hover {
+    background-color: #c82333;
+}
+#deleteProductButton:pressed {
+    background-color: #bd2130;
+}
+
+#editProductButton {
+    background-color: #ffc107; /* Amarelo/Laranja para editar */
+    color: #333333; /* Cor do texto para contraste */
+}
+#editProductButton:hover {
+    background-color: #e0a800;
+}
+#editProductButton:pressed {
+    background-color: #c69500;
+}
+
+#moveStockButton {
+    background-color: #17a2b8; /* Azul ciano para movimentar estoque */
+}
+#moveStockButton:hover {
+    background-color: #138496;
+}
+#moveStockButton:pressed {
+    background-color: #117a8b;
+}
+
+#manageBrandsButton {
+    background-color: #6c757d; /* Cinza para gerenciar marcas */
+}
+#manageBrandsButton:hover {
+    background-color: #5a6268;
+}
+#manageBrandsButton:pressed {
+    background-color: #545b62;
+}
+
 /* Campos de Texto e ComboBox */
 QLineEdit, QComboBox, QSpinBox {
     border: 1px solid #ced4da;
@@ -61,10 +113,17 @@ QTableWidget {
     selection-background-color: #b3d7ff; /* Azul claro para seleção */
     selection-color: #333333;
     border-radius: 5px;
+    alternate-background-color: #f8f9fa; /* Cor para linhas alternadas (efeito zebrado) */
 }
 
 QTableWidget::item {
     padding: 5px;
+}
+
+/* Estilo para linhas com estoque baixo */
+QTableWidget::item.low-stock {
+    background-color: #fff3cd; /* Amarelo claro para alerta de estoque baixo */
+    color: #856404; /* Cor do texto para contraste */
 }
 
 QHeaderView::section {

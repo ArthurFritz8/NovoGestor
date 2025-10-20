@@ -1,0 +1,7 @@
+2025-10-20 00:17:47,320 - DEBUG - AddProductWindow inicializada em modo de adição.
+2025-10-20 00:17:47,326 - DEBUG - Marcas carregadas: [(27, 'Audi'), (206, 'BMW'), (196, 'Chevrolet'), (198, 'Fiat'), (199, 'Ford'), (202, 'Honda'), (200, 'Hyundai'), (204, 'Jeep'), (209, 'Kia'), (205, 'Mercedes-Benz'), (208, 'Nissan'), (210, 'Peugeot'), (203, 'Renault'), (201, 'Toyota'), (197, 'Volkswagen')]
+2025-10-20 00:18:18,088 - DEBUG - AddProductWindow inicializada em modo de adição.
+2025-10-20 00:18:18,090 - DEBUG - Marcas carregadas: [(27, 'Audi'), (206, 'BMW'), (196, 'Chevrolet'), (198, 'Fiat'), (199, 'Ford'), (202, 'Honda'), (200, 'Hyundai'), (204, 'Jeep'), (209, 'Kia'), (205, 'Mercedes-Benz'), (208, 'Nissan'), (210, 'Peugeot'), (203, 'Renault'), (201, 'Toyota'), (197, 'Volkswagen')]
+2025-10-20 00:18:53,167 - DEBUG - AddProductWindow inicializada em modo de edição para produto ID: 1
+2025-10-20 00:18:53,169 - DEBUG - Marcas carregadas: [(27, 'Audi'), (206, 'BMW'), (196, 'Chevrolet'), (198, 'Fiat'), (199, 'Ford'), (202, 'Honda'), (200, 'Hyundai'), (204, 'Jeep'), (209, 'Kia'), (205, 'Mercedes-Benz'), (208, 'Nissan'), (210, 'Peugeot'), (203, 'Renault'), (201, 'Toyota'), (197, 'Volkswagen')]
+2025-10-20 00:18:53,170 - DEBUG - Dados do produto ID 1 carregados para edição.

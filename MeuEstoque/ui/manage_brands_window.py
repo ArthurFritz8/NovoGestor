@@ -8,7 +8,7 @@ from PyQt6.QtCore import pyqtSignal
 from MeuEstoque.database.database_manager import DatabaseManager
 
 class ManageBrandsWindow(QDialog):
-    brands_updated = pyqtSignal()
+    brands_changed = pyqtSignal() # Sinal renomeado para indicar alteração nas marcas
 
     def __init__(self, db_manager, parent=None):
         super().__init__(parent)
@@ -68,7 +68,7 @@ class ManageBrandsWindow(QDialog):
             QMessageBox.information(self, "Sucesso", f"Marca '{brand_name}' adicionada com sucesso!")
             self.new_brand_input.clear()
             self._load_brands()
-            self.brands_updated.emit()
+            self.brands_changed.emit() # Emitir o novo sinal
         else:
             QMessageBox.critical(self, "Erro", f"Não foi possível adicionar a marca '{brand_name}'. Talvez ela já exista.")
 
@@ -101,6 +101,6 @@ class ManageBrandsWindow(QDialog):
             if self.db.delete_marca(brand_id):
                 QMessageBox.information(self, "Sucesso", f"Marca '{brand_name}' excluída com sucesso!")
                 self._load_brands()
-                self.brands_updated.emit()
+                self.brands_changed.emit() # Emitir o novo sinal
             else:
                 QMessageBox.critical(self, "Erro", f"Não foi possível excluir a marca '{brand_name}'.")

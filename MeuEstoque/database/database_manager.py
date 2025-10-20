@@ -128,6 +128,24 @@ class DatabaseManager:
             print(f"Erro ao adicionar produto: {e}")
             return False
 
+    def update_produto(self, produto_id, nome_produto, codigo_produto, descricao, marca_id, quantidade_atual, localizacao):
+        try:
+            self.cursor.execute(
+                """
+                UPDATE produtos
+                SET nome_produto = ?, codigo_produto = ?, descricao = ?, marca_id = ?, quantidade_atual = ?, localizacao = ?
+                WHERE id = ?
+                """,
+                (nome_produto, codigo_produto, descricao, marca_id, quantidade_atual, localizacao, produto_id)
+            )
+            self.conn.commit()
+            return True
+        except sqlite3.IntegrityError:
+            print(f"Produto com código '{codigo_produto}' já existe para outro produto.")
+            return False
+        except sqlite3.Error as e:
+            print(f"Erro ao atualizar produto: {e}")
+            return False
 
     def get_produtos(self, search_term=""):
         query = """

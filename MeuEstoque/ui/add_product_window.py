@@ -17,18 +17,27 @@ logging.basicConfig(filename='debug.log', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 class AddProductWindow(QDialog):
-    product_added = pyqtSignal()
+    product_changed = pyqtSignal() # Sinal renomeado para indicar adição ou edição
 
-    def __init__(self, db_manager, parent=None):
+    def __init__(self, db_manager, product_id=None, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Adicionar Novo Produto")
-        self.setGeometry(150, 150, 600, 700)
         self.db = db_manager
+        self.product_id = product_id # Armazena o ID do produto se estiver em modo de edição
         self.setStyleSheet(open("MeuEstoque/ui/styles.qss").read())
         self.selected_image_paths = []
-        logging.debug("AddProductWindow inicializada.")
+        
+        if self.product_id:
+            self.setWindowTitle("Editar Produto Existente")
+            logging.debug(f"AddProductWindow inicializada em modo de edição para produto ID: {self.product_id}")
+        else:
+            self.setWindowTitle("Adicionar Novo Produto")
+            logging.debug("AddProductWindow inicializada em modo de adição.")
+            
+        self.setGeometry(150, 150, 600, 700)
         self._setup_ui()
         self._load_brands()
+        if self.product_id:
+            self._load_product_data_for_edit() # Carrega dados se estiver em modo de edição
 
     def _setup_ui(self):
         main_layout = QVBoxLayout(self)
@@ -159,11 +168,25 @@ class AddProductWindow(QDialog):
         
         localizacao = self.location_input.text().strip()
 
-        if self.db.add_produto(nome_produto, codigo_produto if codigo_produto else None, descricao, marca_id, quantidade_inicial, localizacao if localizacao else None):
-            product_id = self.db.cursor.lastrowid
-            logging.debug(f"Produto salvo com ID: {product_id}")
+        if self.product_id: # Modo de edição
+            success = self.db.update_produto(
+                self.product_id, nome_produto, codigo_produto if codigo_produto else None,
+                descricao, marca_id, quantidade_inicial, localizacao if localizacao else None
+            )
+            action_message = "atualizado"
+        else: # Modo de adição
+            success = self.db.add_produto(
+                nome_produto, codigo_produto if codigo_produto else None, descricao,
+                marca_id, quantidade_inicial, localizacao if localizacao else None
+            )
+            action_message = "salvo"
+            if success:
+                self.product_id = self.db.cursor.lastrowid # Obter o ID do novo produto
+
+        if success:
+            logging.debug(f"Produto {action_message} com ID: {self.product_id}")
             
-            if product_id and self.selected_image_paths:
+            if self.product_id and self.selected_image_paths:
                 app_dir = os.path.dirname(os.path.abspath(__file__))
                 project_root = os.path.abspath(os.path.join(app_dir, '..'))
                 images_base_dir = os.path.join(project_root, "product_images")
@@ -171,9 +194,14 @@ class AddProductWindow(QDialog):
                 os.makedirs(images_base_dir, exist_ok=True)
                 logging.debug(f"Diretório base de imagens garantido: {images_base_dir}")
 
-                product_images_dir = os.path.join(images_base_dir, str(product_id))
+                product_images_dir = os.path.join(images_base_dir, str(self.product_id))
                 os.makedirs(product_images_dir, exist_ok=True)
                 logging.debug(f"Diretório de imagens do produto garantido: {product_images_dir}")
+
+                # Limpar imagens antigas antes de adicionar as novas em modo de edição
+                if self.product_id and self.save_btn.text() == "Atualizar":
+                    self.db.delete_product_images(self.product_id)
+                    # TODO: Remover arquivos físicos das imagens antigas se necessário
 
                 for original_path in self.selected_image_paths:
                     if os.path.exists(original_path):
@@ -182,14 +210,46 @@ class AddProductWindow(QDialog):
                         shutil.copy(original_path, destination_path)
                         
                         absolute_destination_path = os.path.abspath(destination_path)
-                        self.db.add_product_image(product_id, absolute_destination_path)
+                        self.db.add_product_image(self.product_id, absolute_destination_path)
                         logging.debug(f"Imagem copiada e caminho salvo no DB: {absolute_destination_path}")
                     else:
                         logging.error(f"Erro: Arquivo de imagem original não encontrado: {original_path}")
             
-            QMessageBox.information(self, "Sucesso", "Produto salvo com sucesso!")
-            self.product_added.emit()
+            QMessageBox.information(self, "Sucesso", f"Produto {action_message} com sucesso!")
+            self.product_changed.emit() # Emitir o novo sinal
             self.accept()
         else:
-            QMessageBox.critical(self, "Erro", "Não foi possível salvar o produto. Verifique se o código do produto já existe.")
-            logging.error("Erro ao salvar produto no DB.")
+            QMessageBox.critical(self, "Erro", f"Não foi possível {action_message} o produto. Verifique se o código do produto já existe.")
+            logging.error(f"Erro ao {action_message} produto no DB.")
+
+    def _load_product_data_for_edit(self):
+        if self.product_id:
+            product_data = self.db.get_produto_by_id(self.product_id)
+            if product_data:
+                # product_data: id, nome_produto, codigo_produto, descricao, marca_id, quantidade_atual, localizacao
+                self.name_input.setText(product_data[1])
+                self.code_input.setText(product_data[2] if product_data[2] else "")
+                self.desc_input.setText(product_data[3] if product_data[3] else "")
+                
+                # Selecionar a marca correta no combobox
+                brand_id_to_select = product_data[4]
+                for i in range(self.brand_combobox.count()):
+                    if self.brand_combobox.itemData(i) == brand_id_to_select:
+                        self.brand_combobox.setCurrentIndex(i)
+                        break
+                
+                self.qty_spinbox.setValue(product_data[5])
+                self.location_input.setText(product_data[6] if product_data[6] else "")
+
+                # Carregar imagens existentes
+                self.selected_image_paths = self.db.get_product_images(self.product_id)
+                self._update_image_previews()
+                
+                # Mudar o texto do botão salvar para "Atualizar"
+                self.save_btn.setText("Atualizar")
+                self.setWindowTitle(f"Editar Produto: {product_data[1]}")
+                logging.debug(f"Dados do produto ID {self.product_id} carregados para edição.")
+            else:
+                QMessageBox.critical(self, "Erro", "Não foi possível carregar os dados do produto para edição.")
+                logging.error(f"Produto com ID {self.product_id} não encontrado para edição.")
+                self.reject()

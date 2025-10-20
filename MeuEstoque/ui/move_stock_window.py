@@ -12,7 +12,7 @@ from PyQt6.QtGui import QPixmap
 from MeuEstoque.database.database_manager import DatabaseManager
 
 class MoveStockWindow(QDialog):
-    stock_moved = pyqtSignal()
+    stock_changed = pyqtSignal() # Sinal renomeado para indicar movimentação de estoque
 
     def __init__(self, db_manager, parent=None):
         super().__init__(parent)
@@ -187,7 +187,7 @@ class MoveStockWindow(QDialog):
 
         if self.db.update_produto_quantity(self.current_product_id, quantidade, tipo, observacao): # Removido foto_path
             QMessageBox.information(self, "Sucesso", f"Movimentação de {tipo} registrada com sucesso!")
-            self.stock_moved.emit()
+            self.stock_changed.emit() # Emitir o novo sinal
             self.accept()
         else:
             QMessageBox.critical(self, "Erro", "Não foi possível registrar a movimentação. Verifique se a quantidade de saída não excede o estoque atual.")
