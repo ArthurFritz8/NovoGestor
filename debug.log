@@ -82,3 +82,30 @@
 2025-10-20 11:33:43,563 - DEBUG - Imagem copiada e caminho salvo no DB: C:\Users\dougl\OneDrive\Área de Trabalho\Save Gestor\Salve 1\NovoGestor\MeuEstoque\product_images\6\trsabs.jpg
 2025-10-20 11:33:55,145 - DEBUG - AddProductWindow inicializada em modo de adição.
 2025-10-20 11:33:55,148 - DEBUG - Marcas carregadas: [(1205, 'Audi'), (1204, 'BMW'), (1194, 'Chevrolet'), (1196, 'Fiat'), (1042, 'Ford'), (1200, 'Honda'), (1198, 'Hyundai'), (1202, 'Jeep'), (1052, 'Kia'), (1203, 'Mercedes-Benz'), (1206, 'Nissan'), (1208, 'Peugeot'), (1201, 'Renault'), (1199, 'Toyota'), (1195, 'Volkswagen')]
+2025-10-20 16:52:36,381 - DEBUG - AddProductWindow inicializada em modo de adição.
+2025-10-20 16:52:36,383 - DEBUG - Marcas carregadas: [(1205, 'Audi'), (1204, 'BMW'), (1194, 'Chevrolet'), (1196, 'Fiat'), (1042, 'Ford'), (1200, 'Honda'), (1198, 'Hyundai'), (1202, 'Jeep'), (1052, 'Kia'), (1203, 'Mercedes-Benz'), (1206, 'Nissan'), (1208, 'Peugeot'), (1201, 'Renault'), (1199, 'Toyota'), (1195, 'Volkswagen')]
+2025-10-20 16:53:12,404 - DEBUG - Produto salvo com ID: 7
+2025-10-20 17:02:53,568 - DEBUG - AddProductWindow inicializada em modo de adição.
+2025-10-20 17:02:53,571 - DEBUG - Marcas carregadas: [(1205, 'Audi'), (1204, 'BMW'), (1194, 'Chevrolet'), (1196, 'Fiat'), (1042, 'Ford'), (1200, 'Honda'), (1198, 'Hyundai'), (1202, 'Jeep'), (1052, 'Kia'), (1203, 'Mercedes-Benz'), (1206, 'Nissan'), (1208, 'Peugeot'), (1201, 'Renault'), (1199, 'Toyota'), (1195, 'Volkswagen')]
+2025-10-20 17:03:07,822 - DEBUG - Produto salvo com ID: 8
+2025-10-20 17:04:04,262 - DEBUG - AddProductWindow inicializada em modo de adição.
+2025-10-20 17:04:04,264 - DEBUG - Marcas carregadas: [(1205, 'Audi'), (1204, 'BMW'), (1194, 'Chevrolet'), (1196, 'Fiat'), (1042, 'Ford'), (1200, 'Honda'), (1198, 'Hyundai'), (1202, 'Jeep'), (1052, 'Kia'), (1203, 'Mercedes-Benz'), (1206, 'Nissan'), (1208, 'Peugeot'), (1201, 'Renault'), (1199, 'Toyota'), (1195, 'Volkswagen')]
+2025-10-20 17:04:18,143 - DEBUG - Produto salvo com ID: 9
+2025-10-20 17:05:19,466 - DEBUG - AddProductWindow inicializada em modo de adição.
+2025-10-20 17:05:19,468 - DEBUG - Marcas carregadas: [(1205, 'Audi'), (1204, 'BMW'), (1194, 'Chevrolet'), (1196, 'Fiat'), (1042, 'Ford'), (1200, 'Honda'), (1198, 'Hyundai'), (1202, 'Jeep'), (1052, 'Kia'), (1203, 'Mercedes-Benz'), (1206, 'Nissan'), (1208, 'Peugeot'), (1201, 'Renault'), (1199, 'Toyota'), (1195, 'Volkswagen')]
+2025-10-20 17:05:42,343 - DEBUG - Produto salvo com ID: 10
+2025-10-21 00:11:38,602 - DEBUG - AddProductWindow inicializada em modo de adição.
+2025-10-21 00:11:38,607 - DEBUG - Marcas carregadas: [(1205, 'Audi'), (1204, 'BMW'), (1194, 'Chevrolet'), (1196, 'Fiat'), (1042, 'Ford'), (1200, 'Honda'), (1198, 'Hyundai'), (1202, 'Jeep'), (1052, 'Kia'), (1203, 'Mercedes-Benz'), (1206, 'Nissan'), (1208, 'Peugeot'), (1201, 'Renault'), (1199, 'Toyota'), (1195, 'Volkswagen')]
+2025-10-21 00:12:02,547 - DEBUG - Tentando carregar miniatura para preview: C:/Users/dougl/OneDrive/Área de Trabalho/DescarteMuzas/__ariellh_348243794_1362603034595644_5725663296212939626_n.jpg
+2025-10-21 00:12:02,582 - DEBUG - Miniatura carregada com sucesso: C:/Users/dougl/OneDrive/Área de Trabalho/DescarteMuzas/__ariellh_348243794_1362603034595644_5725663296212939626_n.jpg
+2025-10-21 00:12:02,583 - DEBUG - Imagens selecionadas: ['C:/Users/dougl/OneDrive/Área de Trabalho/DescarteMuzas/__ariellh_348243794_1362603034595644_5725663296212939626_n.jpg']
+2025-10-21 00:12:04,322 - DEBUG - Produto salvo com ID: 11
+2025-10-21 00:12:04,322 - DEBUG - Diretório base de imagens garantido: C:\Users\dougl\OneDrive\Área de Trabalho\Save Gestor\Salve 1\NovoGestor\MeuEstoque\product_images
+2025-10-21 00:12:04,323 - DEBUG - Diretório de imagens do produto garantido: C:\Users\dougl\OneDrive\Área de Trabalho\Save Gestor\Salve 1\NovoGestor\MeuEstoque\product_images\11
+2025-10-21 00:12:04,331 - DEBUG - Imagem copiada e caminho salvo no DB: C:\Users\dougl\OneDrive\Área de Trabalho\Save Gestor\Salve 1\NovoGestor\MeuEstoque\product_images\11\__ariellh_348243794_1362603034595644_5725663296212939626_n.jpg
+2025-10-21 00:34:48,482 - DEBUG - AddProductWindow inicializada em modo de adição.
+2025-10-21 00:34:48,485 - DEBUG - Marcas carregadas: [(1205, 'Audi'), (1204, 'BMW'), (1194, 'Chevrolet'), (1196, 'Fiat'), (1042, 'Ford'), (1200, 'Honda'), (1198, 'Hyundai'), (1202, 'Jeep'), (1052, 'Kia'), (1203, 'Mercedes-Benz'), (1206, 'Nissan'), (1208, 'Peugeot'), (1201, 'Renault'), (1199, 'Toyota'), (1195, 'Volkswagen')]
+2025-10-21 00:34:57,313 - DEBUG - Produto salvo com ID: 12
+2025-10-21 00:40:09,591 - DEBUG - AddProductWindow inicializada em modo de adição.
+2025-10-21 00:40:09,594 - DEBUG - Marcas carregadas: [(1205, 'Audi'), (1204, 'BMW'), (1194, 'Chevrolet'), (1196, 'Fiat'), (1042, 'Ford'), (1200, 'Honda'), (1198, 'Hyundai'), (1202, 'Jeep'), (1052, 'Kia'), (1203, 'Mercedes-Benz'), (1206, 'Nissan'), (1208, 'Peugeot'), (1201, 'Renault'), (1199, 'Toyota'), (1195, 'Volkswagen')]
+2025-10-21 00:40:26,238 - DEBUG - Produto salvo com ID: 13

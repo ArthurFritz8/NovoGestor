@@ -109,7 +109,7 @@ class ProductDetailsWindow(QDialog):
                     label = QLabel()
                     label.setPixmap(thumbnail)
                     label.setFixedSize(thumbnail_size, thumbnail_size)
-                    label.setAlignment(int(Qt.AlignmentFlag.AlignCenter)) # Usar int() cast para consistência
+                    label.setAlignment(Qt.AlignmentFlag.AlignCenter) # Removido int() cast
                     self.image_grid_layout.addWidget(label, i // 3, i % 3) # 3 miniaturas por linha
                     print(f"Imagem carregada com sucesso: {path}")
                     sys.stdout.flush()

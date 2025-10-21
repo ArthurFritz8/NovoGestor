@@ -406,6 +406,53 @@ class DatabaseManager:
         itens = self.cursor.fetchall()
         return compra, itens
 
+    def update_compra(self, compra_id, fornecedor_id, data_emissao, data_entrega, prazo_entrega, subtotal, desconto, frete, total_final, observacao, status_pagamento, itens_compra_data):
+        try:
+            self.conn.execute("BEGIN TRANSACTION")
+
+            # 1. Atualizar a compra principal
+            self.cursor.execute(
+                """
+                UPDATE compras
+                SET fornecedor_id = ?, data_emissao = ?, data_entrega = ?, prazo_entrega = ?,
+                    subtotal = ?, desconto = ?, frete = ?, total_final = ?, observacao = ?, status_pagamento = ?
+                WHERE id = ?
+                """,
+                (fornecedor_id, data_emissao, data_entrega, prazo_entrega,
+                 subtotal, desconto, frete, total_final, observacao, status_pagamento, compra_id)
+            )
+
+            # 2. Excluir todos os itens de compra existentes para esta compra
+            self.cursor.execute("DELETE FROM itens_compra WHERE compra_id = ?", (compra_id,))
+
+            # 3. Inserir os novos itens de compra
+            for item_data in itens_compra_data:
+                produto_id = item_data['produto_id']
+                quantidade = item_data['quantidade']
+                preco_unitario = item_data['preco_unitario']
+                self.cursor.execute(
+                    "INSERT INTO itens_compra (compra_id, produto_id, quantidade, preco_unitario) VALUES (?, ?, ?, ?)",
+                    (compra_id, produto_id, quantidade, preco_unitario)
+                )
+            
+            # 4. Atualizar a conta a pagar associada (se houver)
+            # Simplificado: assume que há uma conta a pagar por compra e a atualiza
+            self.cursor.execute(
+                """
+                UPDATE contas_a_pagar
+                SET data_vencimento = ?, valor = ?
+                WHERE compra_id = ?
+                """,
+                (data_entrega, total_final, compra_id) # Usando data_entrega como nova data de vencimento e total_final como novo valor
+            )
+
+            self.conn.commit()
+            return True
+        except sqlite3.Error as e:
+            self.conn.rollback()
+            print(f"Erro ao atualizar compra: {e}")
+            return False
+
     def delete_compra(self, compra_id):
         try:
             self.cursor.execute("DELETE FROM compras WHERE id = ?", (compra_id,))
@@ -416,6 +463,15 @@ class DatabaseManager:
             return False
 
     # Métodos para Contas a Pagar
+    def delete_conta_a_pagar(self, conta_id):
+        try:
+            self.cursor.execute("DELETE FROM contas_a_pagar WHERE id = ?", (conta_id,))
+            self.conn.commit()
+            return True
+        except sqlite3.Error as e:
+            print(f"Erro ao deletar conta a pagar: {e}")
+            return False
+
     def add_conta_a_pagar(self, compra_id, data_vencimento, valor, valor_pago=0.0, status='Pendente'):
         try:
             self.cursor.execute(

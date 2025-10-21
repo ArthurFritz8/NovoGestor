@@ -85,6 +85,13 @@ class ManageAccountsPayableWindow(QWidget): # Alterado para QWidget
         self.pay_account_btn.clicked.connect(self._open_payment_dialog)
         self.pay_account_btn.setEnabled(False)
         action_buttons_layout.addWidget(self.pay_account_btn)
+
+        self.delete_account_btn = QPushButton("Excluir Conta")
+        self.delete_account_btn.setObjectName("deleteAccountButton")
+        self.delete_account_btn.clicked.connect(self._delete_selected_account)
+        self.delete_account_btn.setEnabled(False)
+        action_buttons_layout.addWidget(self.delete_account_btn)
+
         main_layout.addLayout(action_buttons_layout)
 
     def _load_accounts(self):
@@ -124,6 +131,7 @@ class ManageAccountsPayableWindow(QWidget): # Alterado para QWidget
     def _toggle_action_buttons(self):
         is_account_selected = self.accounts_table.currentItem() is not None
         self.pay_account_btn.setEnabled(is_account_selected)
+        self.delete_account_btn.setEnabled(is_account_selected) # Habilitar/desabilitar botão de exclusão
         self._hide_payment_dialog()
 
     def _open_payment_dialog(self):
@@ -195,3 +203,31 @@ class ManageAccountsPayableWindow(QWidget): # Alterado para QWidget
             self._hide_payment_dialog()
         else:
             QMessageBox.critical(self, "Erro", "Não foi possível registrar o pagamento.")
+
+    def _delete_selected_account(self):
+        selected_items = self.accounts_table.selectedItems()
+        if not selected_items:
+            QMessageBox.warning(self, "Atenção", "Por favor, selecione uma conta a pagar para excluir.")
+            return
+
+        row = selected_items[0].row()
+        account_id = self.accounts_table.item(row, 6).data(Qt.ItemDataRole.UserRole)
+        supplier_name = self.accounts_table.item(row, 0).text()
+        due_date = self.accounts_table.item(row, 2).text()
+
+        reply = QMessageBox.question(
+            self, "Confirmar Exclusão",
+            f"Tem certeza que deseja excluir a conta a pagar do fornecedor '{supplier_name}' com vencimento em {due_date}?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+
+        if reply == QMessageBox.StandardButton.Yes:
+            try:
+                if self.db.delete_conta_a_pagar(account_id):
+                    QMessageBox.information(self, "Sucesso", "Conta a pagar excluída com sucesso!")
+                    self._load_accounts()
+                    self.accounts_changed.emit()
+                else:
+                    QMessageBox.critical(self, "Erro", "Não foi possível excluir a conta a pagar.")
+            except Exception as e:
+                QMessageBox.critical(self, "Erro", f"Ocorreu um erro ao excluir a conta a pagar: {e}")

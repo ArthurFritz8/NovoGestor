@@ -110,7 +110,7 @@ class ViewPurchasesWindow(QWidget): # Alterado para QWidget
             return
 
         row = selected_items[0].row()
-        purchase_id = self.purchases_table.item(row, 3).data(Qt.ItemDataRole.UserRole)
+        purchase_id = self.purchases_table.item(row, 4).data(Qt.ItemDataRole.UserRole) # Corrigido o índice da coluna para 4
 
         if purchase_id is not None:
             details_window = AddPurchaseWindow(self.db, purchase_id=purchase_id, parent=self)
@@ -124,7 +124,7 @@ class ViewPurchasesWindow(QWidget): # Alterado para QWidget
             return
 
         row = selected_items[0].row()
-        purchase_id = self.purchases_table.item(row, 3).data(Qt.ItemDataRole.UserRole)
+        purchase_id = self.purchases_table.item(row, 4).data(Qt.ItemDataRole.UserRole) # Corrigido o índice da coluna para 4
         supplier_name = self.purchases_table.item(row, 0).text()
         issue_date = self.purchases_table.item(row, 1).text()
 

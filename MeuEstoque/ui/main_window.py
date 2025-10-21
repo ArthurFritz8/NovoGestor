@@ -280,7 +280,7 @@ class MainWindow(QMainWindow):
         self.brands_widget.brands_changed.connect(self.brands_widget._load_brands) # Recarregar marcas
         self.suppliers_widget.suppliers_changed.connect(self.suppliers_widget._load_suppliers) # Recarregar fornecedores
         self.purchases_widget.purchase_changed.connect(self.purchases_widget._load_purchases) # Recarregar compras
-        # self.accounts_payable_widget.accounts_changed.connect(self.accounts_payable_widget._load_accounts) # Removido para evitar RecursionError
+        self.accounts_payable_widget.accounts_changed.connect(self.accounts_payable_widget._load_accounts) # Reativado
 
         # Definir a página inicial
         self.sidebar.setCurrentRow(0)

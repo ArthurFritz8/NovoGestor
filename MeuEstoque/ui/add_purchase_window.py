@@ -63,15 +63,17 @@ class AddPurchaseWindow(QDialog):
         add_item_layout.addWidget(self.product_combo)
 
         self.quantity_spinbox = QDoubleSpinBox()
-        self.quantity_spinbox.setMinimum(0.01)
+        self.quantity_spinbox.setMinimum(1.00) # Alterado para 1.00
         self.quantity_spinbox.setMaximum(999999.99)
+        self.quantity_spinbox.setValue(1.00) # Valor padrão 1.00
         self.quantity_spinbox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
         add_item_layout.addWidget(QLabel("Quantidade:"))
         add_item_layout.addWidget(self.quantity_spinbox)
 
         self.unit_price_spinbox = QDoubleSpinBox()
-        self.unit_price_spinbox.setMinimum(0.01)
+        self.unit_price_spinbox.setMinimum(1.00) # Alterado para 1.00
         self.unit_price_spinbox.setMaximum(999999.99)
+        self.unit_price_spinbox.setValue(1.00) # Valor padrão 1.00
         self.unit_price_spinbox.setPrefix("R$ ")
         self.unit_price_spinbox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
         add_item_layout.addWidget(QLabel("Preço Unitário:"))
@@ -212,6 +214,7 @@ class AddPurchaseWindow(QDialog):
             self.observation_input.setText(purchase_data[9] if purchase_data[9] else '')
             self.discount_spinbox.setValue(purchase_data[6])
             self.freight_spinbox.setValue(purchase_data[7])
+            self.current_status_pagamento = purchase_data[10] # Armazenar o status de pagamento atual
 
             # Carregar itens da compra
             self.products_in_purchase = {} # Limpar para recarregar
@@ -230,6 +233,22 @@ class AddPurchaseWindow(QDialog):
             self._update_items_table()
             self._calculate_totals()
             self.setWindowTitle(f"Editar Compra: {purchase_data[0]}")
+
+            # Preencher os spinboxes com os dados do primeiro item para edição
+            if items_data:
+                first_item = items_data[0]
+                first_product_id = first_item[0]
+                first_product_name = first_item[1]
+                first_quantity = first_item[2]
+                first_unit_price = first_item[3]
+
+                # Encontrar o índice do produto no combobox
+                for i in range(self.product_combo.count()):
+                    if self.product_combo.itemData(i) == first_product_id:
+                        self.product_combo.setCurrentIndex(i)
+                        break
+                self.quantity_spinbox.setValue(first_quantity)
+                self.unit_price_spinbox.setValue(first_unit_price)
         else:
             QMessageBox.critical(self, "Erro", "Compra não encontrada.")
             self.reject()
@@ -245,8 +264,13 @@ class AddPurchaseWindow(QDialog):
         freight = self.freight_spinbox.value()
         total_final = float(self.total_final_label.text().replace("R$ ", "").replace(",", "."))
         
-        # O status de pagamento inicial de uma nova compra é "Pendente"
-        status_pagamento = "Pendente" 
+        # Definir o status de pagamento
+        if self.purchase_id is None:
+            # Nova compra: status inicial é "Pendente"
+            status_pagamento_final = "Pendente"
+        else:
+            # Edição de compra: manter o status existente
+            status_pagamento_final = self.current_status_pagamento if hasattr(self, 'current_status_pagamento') else "Pendente"
 
         if supplier_id is None:
             QMessageBox.warning(self, "Atenção", "Por favor, selecione um fornecedor.")
@@ -258,7 +282,7 @@ class AddPurchaseWindow(QDialog):
         if self.purchase_id is None: # Nova compra
             new_purchase_id = self.db.add_compra(
                 supplier_id, issue_date, delivery_date, due_date,
-                subtotal, discount, freight, total_final, observation, status_pagamento
+                subtotal, discount, freight, total_final, observation, status_pagamento_final
             )
             if new_purchase_id:
                 for product_id, data in self.products_in_purchase.items():
@@ -277,9 +301,21 @@ class AddPurchaseWindow(QDialog):
                 self.accept()
             else:
                 QMessageBox.critical(self, "Erro", "Não foi possível adicionar a compra.")
-        else: # Editar compra existente (funcionalidade de edição de compra e itens não implementada ainda)
-            # Para edição, precisaríamos de um método update_compra e update_item_compra no DatabaseManager
-            # E uma lógica para comparar os itens antigos com os novos e fazer as alterações necessárias (adicionar, remover, atualizar)
-            QMessageBox.information(self, "Informação", "A edição de compras existentes ainda não está totalmente implementada.")
-            self.purchase_changed.emit()
-            self.accept()
+        else: # Editar compra existente
+            itens_para_atualizar = []
+            for product_id, data in self.products_in_purchase.items():
+                itens_para_atualizar.append({
+                    'produto_id': product_id,
+                    'quantidade': data['quantidade'],
+                    'preco_unitario': data['preco_unitario']
+                })
+
+            if self.db.update_compra(
+                self.purchase_id, supplier_id, issue_date, delivery_date, due_date,
+                subtotal, discount, freight, total_final, observation, status_pagamento_final, itens_para_atualizar
+            ):
+                QMessageBox.information(self, "Sucesso", "Compra atualizada com sucesso!")
+                self.purchase_changed.emit()
+                self.accept()
+            else:
+                QMessageBox.critical(self, "Erro", "Não foi possível atualizar a compra.")
