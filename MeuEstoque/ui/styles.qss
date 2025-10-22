@@ -11,6 +11,31 @@ QWidget {
     background-color: #FFFFFF;
 }
 
+/* Título Principal da Janela */
+QLabel#mainTitle {
+    font-size: 20pt;
+    font-weight: bold;
+    color: #1976D2; /* Azul primário */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Botão de Ajuda */
+QPushButton#help_button {
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    min-width: 20px;
+    max-width: 30px;
+    min-height: 20px;
+    max-height: 30px;
+}
+
+QPushButton#help_button:hover {
+    background-color: #E0E0E0;
+    border-radius: 15px;
+}
+
 /* Títulos de Módulo */
 QLabel#moduleTitle {
     font-size: 18pt;

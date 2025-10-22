@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import Qt, pyqtSignal
 from MeuEstoque.database.database_manager import DatabaseManager
+from MeuEstoque.logger import get_logger
 
 class ManageSuppliersWindow(QWidget): # Alterado para QWidget
     suppliers_changed = pyqtSignal()
@@ -11,6 +12,7 @@ class ManageSuppliersWindow(QWidget): # Alterado para QWidget
     def __init__(self, db_manager, parent=None):
         super().__init__(parent)
         self.db = db_manager
+        self.logger = get_logger(self.__class__.__name__)
         self.current_supplier_id = None
 
         self.setStyleSheet(open("MeuEstoque/ui/styles.qss").read())
@@ -184,22 +186,27 @@ class ManageSuppliersWindow(QWidget): # Alterado para QWidget
 
         if not name:
             QMessageBox.warning(self, "Atenção", "O nome do fornecedor é obrigatório.")
+            self.logger.warning("Tentativa de salvar fornecedor sem nome.")
             return
 
         if self.current_supplier_id is None:
             if self.db.add_fornecedor(name, contact, phone, email, address):
                 QMessageBox.information(self, "Sucesso", "Fornecedor adicionado com sucesso!")
+                self.logger.info(f"Fornecedor '{name}' adicionado com sucesso.")
                 self._load_suppliers()
                 self._clear_form()
             else:
                 QMessageBox.critical(self, "Erro", "Não foi possível adicionar o fornecedor. Verifique se o nome já existe.")
+                self.logger.warning(f"Falha ao adicionar fornecedor '{name}'.")
         else:
             if self.db.update_fornecedor(self.current_supplier_id, name, contact, phone, email, address):
                 QMessageBox.information(self, "Sucesso", "Fornecedor atualizado com sucesso!")
+                self.logger.info(f"Fornecedor (ID: {self.current_supplier_id}) atualizado para '{name}'.")
                 self._load_suppliers()
                 self._clear_form()
             else:
                 QMessageBox.critical(self, "Erro", "Não foi possível atualizar o fornecedor. Verifique se o nome já existe para outro registro.")
+                self.logger.warning(f"Falha ao atualizar fornecedor (ID: {self.current_supplier_id}) para '{name}'.")
 
     def _delete_supplier(self):
         try:
@@ -239,8 +246,10 @@ class ManageSuppliersWindow(QWidget): # Alterado para QWidget
                 self._load_suppliers()
             else:
                 QMessageBox.critical(self, "Erro", f"Não foi possível excluir o fornecedor '{supplier_name}'.")
+                self.logger.warning(f"Falha ao excluir fornecedor '{supplier_name}' (ID: {supplier_id}).")
         except Exception as e:
             QMessageBox.critical(self, "Erro", f"Ocorreu um erro ao tentar excluir o fornecedor: {str(e)}")
+            self.logger.error(f"Erro ao excluir fornecedor (ID: {supplier_id}): {e}", exc_info=True)
 
     def _clear_form(self):
         self.name_input.clear()

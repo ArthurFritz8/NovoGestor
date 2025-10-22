@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import Qt, QDate, pyqtSignal
 from MeuEstoque.database.database_manager import DatabaseManager
+from MeuEstoque.logger import get_logger
 
 class ManageAccountsPayableWindow(QWidget): # Alterado para QWidget
     accounts_changed = pyqtSignal()
@@ -12,6 +13,7 @@ class ManageAccountsPayableWindow(QWidget): # Alterado para QWidget
     def __init__(self, db_manager, parent=None):
         super().__init__(parent)
         self.db = db_manager
+        self.logger = get_logger(self.__class__.__name__)
         self.current_account_id = None
 
         self.setStyleSheet(open("MeuEstoque/ui/styles.qss").read())
@@ -203,11 +205,13 @@ class ManageAccountsPayableWindow(QWidget): # Alterado para QWidget
             self._hide_payment_dialog()
         else:
             QMessageBox.critical(self, "Erro", "Não foi possível registrar o pagamento.")
+            self.logger.warning(f"Falha ao registrar pagamento para conta (ID: {self.current_account_id}).")
 
     def _delete_selected_account(self):
         selected_items = self.accounts_table.selectedItems()
         if not selected_items:
             QMessageBox.warning(self, "Atenção", "Por favor, selecione uma conta a pagar para excluir.")
+            self.logger.warning("Tentativa de excluir conta a pagar sem seleção.")
             return
 
         row = selected_items[0].row()
@@ -227,7 +231,10 @@ class ManageAccountsPayableWindow(QWidget): # Alterado para QWidget
                     QMessageBox.information(self, "Sucesso", "Conta a pagar excluída com sucesso!")
                     self._load_accounts()
                     self.accounts_changed.emit()
+                    self.logger.info(f"Conta a pagar (ID: {account_id}) excluída com sucesso.")
                 else:
                     QMessageBox.critical(self, "Erro", "Não foi possível excluir a conta a pagar.")
+                    self.logger.warning(f"Falha ao excluir conta a pagar (ID: {account_id}).")
             except Exception as e:
                 QMessageBox.critical(self, "Erro", f"Ocorreu um erro ao excluir a conta a pagar: {e}")
+                self.logger.error(f"Erro ao excluir conta a pagar (ID: {account_id}): {e}", exc_info=True)

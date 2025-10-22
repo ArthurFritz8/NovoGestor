@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import Qt, pyqtSignal
 from MeuEstoque.database.database_manager import DatabaseManager
 from MeuEstoque.ui.add_purchase_window import AddPurchaseWindow
+from MeuEstoque.logger import get_logger
 
 class ViewPurchasesWindow(QWidget): # Alterado para QWidget
     purchase_changed = pyqtSignal()
@@ -12,6 +13,7 @@ class ViewPurchasesWindow(QWidget): # Alterado para QWidget
     def __init__(self, db_manager, parent=None):
         super().__init__(parent)
         self.db = db_manager
+        self.logger = get_logger(self.__class__.__name__)
 
         self.setStyleSheet(open("MeuEstoque/ui/styles.qss").read())
 
@@ -147,5 +149,7 @@ class ViewPurchasesWindow(QWidget): # Alterado para QWidget
                     self.purchase_changed.emit() # Emitir sinal de que as compras foram alteradas
                 else:
                     QMessageBox.critical(self, "Erro", "Não foi possível excluir a compra.")
+                    self.logger.warning(f"Falha ao excluir compra (ID: {purchase_id}).")
             except Exception as e:
                 QMessageBox.critical(self, "Erro", f"Não foi possível excluir a compra: {e}")
+                self.logger.error(f"Erro ao excluir compra (ID: {purchase_id}): {e}", exc_info=True)

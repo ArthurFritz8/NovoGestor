@@ -1,0 +1,369 @@
+2025-10-22 20:01:29,434 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:29,494 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:29,504 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:29,509 - DatabaseManager - INFO - Marca 'Marca Duplicada' adicionada com sucesso.
+2025-10-22 20:01:29,510 - DatabaseManager - WARNING - Tentativa de adicionar marca duplicada: 'Marca Duplicada'.
+2025-10-22 20:01:29,510 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:29,512 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:29,552 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:29,558 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:29,563 - DatabaseManager - INFO - Fornecedor 'Fornecedor Teste' adicionado com sucesso.
+2025-10-22 20:01:29,565 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:29,567 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:29,609 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:29,647 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:29,652 - DatabaseManager - INFO - Marca 'Marca Teste' adicionada com sucesso.
+2025-10-22 20:01:29,666 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:29,668 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:29,709 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:29,714 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:29,722 - DatabaseManager - INFO - Marca 'Marca Produto' adicionada com sucesso.
+2025-10-22 20:01:29,728 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:29,730 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:29,769 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:29,775 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:29,782 - DatabaseManager - INFO - Marca 'Marca para Deletar' adicionada com sucesso.
+2025-10-22 20:01:29,787 - DatabaseManager - INFO - Marca (ID: 12) deletada com sucesso.
+2025-10-22 20:01:29,788 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:29,790 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:29,831 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:29,837 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:29,843 - DatabaseManager - INFO - Marca 'Marca Antiga' adicionada com sucesso.
+2025-10-22 20:01:29,844 - DatabaseManager - INFO - Marca (ID: 12) atualizada para 'Marca Nova'.
+2025-10-22 20:01:29,844 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:29,851 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:29,938 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:29,943 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:29,948 - DatabaseManager - INFO - Marca 'Marca Qty' adicionada com sucesso.
+2025-10-22 20:01:29,958 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:29,960 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:30,002 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:30,007 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:30,010 - DatabaseManager - INFO - Marca 'Marca Qty Saida' adicionada com sucesso.
+2025-10-22 20:01:30,025 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:30,028 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:30,062 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:30,072 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:30,079 - DatabaseManager - INFO - Marca 'Marca Qty Insuficiente' adicionada com sucesso.
+2025-10-22 20:01:30,088 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:57,895 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:57,974 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:57,980 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:57,994 - DatabaseManager - INFO - Marca 'Marca Duplicada' adicionada com sucesso.
+2025-10-22 20:01:57,995 - DatabaseManager - WARNING - Tentativa de adicionar marca duplicada: 'Marca Duplicada'.
+2025-10-22 20:01:57,996 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:57,997 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:58,045 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:58,053 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:58,058 - DatabaseManager - INFO - Fornecedor 'Fornecedor Teste' adicionado com sucesso.
+2025-10-22 20:01:58,060 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:58,061 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:58,102 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:58,109 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:58,159 - DatabaseManager - INFO - Marca 'Marca Teste' adicionada com sucesso.
+2025-10-22 20:01:58,160 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:58,162 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:58,206 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:58,209 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:58,209 - DatabaseManager - INFO - Marca 'Marca Produto' adicionada com sucesso.
+2025-10-22 20:01:58,225 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:58,227 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:58,268 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:58,275 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:58,281 - DatabaseManager - INFO - Marca 'Marca para Deletar' adicionada com sucesso.
+2025-10-22 20:01:58,286 - DatabaseManager - INFO - Marca (ID: 12) deletada com sucesso.
+2025-10-22 20:01:58,288 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:58,290 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:58,331 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:58,337 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:58,342 - DatabaseManager - INFO - Marca 'Marca Antiga' adicionada com sucesso.
+2025-10-22 20:01:58,353 - DatabaseManager - INFO - Marca (ID: 12) atualizada para 'Marca Nova'.
+2025-10-22 20:01:58,371 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:58,398 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:58,447 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:58,456 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:58,461 - DatabaseManager - INFO - Marca 'Marca Qty' adicionada com sucesso.
+2025-10-22 20:01:58,476 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:58,478 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:58,524 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:58,531 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:58,539 - DatabaseManager - INFO - Marca 'Marca Qty Saida' adicionada com sucesso.
+2025-10-22 20:01:58,554 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:01:58,556 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:01:58,647 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:01:58,653 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:01:58,659 - DatabaseManager - INFO - Marca 'Marca Qty Insuficiente' adicionada com sucesso.
+2025-10-22 20:01:58,666 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:06:17,540 - __main__ - INFO - Diretório base de imagens garantido: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images
+2025-10-22 20:06:17,547 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:06:17,553 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:06:17,571 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:06:17,577 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:06:17,579 - __main__ - INFO - Banco de dados inicializado e tabelas verificadas.
+2025-10-22 20:06:17,733 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:06:17,736 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:06:17,883 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:06:19,284 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:06:19,298 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:09:13,198 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:04,004 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:04,043 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:04,056 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:04,060 - DatabaseManager - INFO - Marca 'Marca Duplicada' adicionada com sucesso.
+2025-10-22 20:11:04,060 - DatabaseManager - WARNING - Tentativa de adicionar marca duplicada: 'Marca Duplicada'.
+2025-10-22 20:11:04,060 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:04,060 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:04,111 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:04,113 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:04,124 - DatabaseManager - INFO - Fornecedor 'Fornecedor Teste' adicionado com sucesso.
+2025-10-22 20:11:04,125 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:04,127 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:04,173 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:04,179 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:04,185 - DatabaseManager - INFO - Marca 'Marca Teste' adicionada com sucesso.
+2025-10-22 20:11:04,187 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:04,189 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:04,233 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:04,241 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:04,246 - DatabaseManager - INFO - Marca 'Marca Produto' adicionada com sucesso.
+2025-10-22 20:11:04,254 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:04,257 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:04,299 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:04,305 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:04,309 - DatabaseManager - INFO - Marca 'Marca para Deletar' adicionada com sucesso.
+2025-10-22 20:11:04,317 - DatabaseManager - INFO - Marca (ID: 12) deletada com sucesso.
+2025-10-22 20:11:04,317 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:04,322 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:04,360 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:04,375 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:04,385 - DatabaseManager - INFO - Marca 'Marca Imagem' adicionada com sucesso.
+2025-10-22 20:11:04,404 - DatabaseManager - INFO - Produto (ID: 1) e suas referências no DB excluídos com sucesso.
+2025-10-22 20:11:04,406 - DatabaseManager - INFO - Imagem 'MeuEstoque\product_images\test_product\dummy_image.jpg' excluída do sistema de arquivos.
+2025-10-22 20:11:04,408 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:04,410 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:04,491 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:04,502 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:04,509 - DatabaseManager - INFO - Marca 'Marca Antiga' adicionada com sucesso.
+2025-10-22 20:11:04,515 - DatabaseManager - INFO - Marca (ID: 12) atualizada para 'Marca Nova'.
+2025-10-22 20:11:04,516 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:04,518 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:04,560 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:04,566 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:04,575 - DatabaseManager - INFO - Marca 'Marca Qty' adicionada com sucesso.
+2025-10-22 20:11:04,590 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:04,592 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:04,641 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:04,647 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:04,656 - DatabaseManager - INFO - Marca 'Marca Qty Saida' adicionada com sucesso.
+2025-10-22 20:11:04,669 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:04,673 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:04,723 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:04,730 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:04,737 - DatabaseManager - INFO - Marca 'Marca Qty Insuficiente' adicionada com sucesso.
+2025-10-22 20:11:04,742 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:28,695 - __main__ - INFO - Diretório base de imagens garantido: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images
+2025-10-22 20:11:28,696 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:28,698 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:28,698 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:28,698 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:11:28,698 - __main__ - INFO - Banco de dados inicializado e tabelas verificadas.
+2025-10-22 20:11:28,789 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:11:28,791 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:11:28,799 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:11:29,718 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:11:29,724 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:14:30,047 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:14:30,070 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:14:52,815 - DatabaseManager - INFO - Produto (ID: 15) e suas referências no DB excluídos com sucesso.
+2025-10-22 20:14:52,827 - DatabaseManager - INFO - Imagem 'C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\15\downloadaaa.jpg' excluída do sistema de arquivos.
+2025-10-22 20:14:53,871 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:14:53,884 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:14:53,885 - ProductsWidget - INFO - Produto 'aa' (ID: 15) excluído com sucesso.
+2025-10-22 20:17:18,460 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:18,499 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:18,499 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:18,510 - DatabaseManager - INFO - Marca 'Marca Duplicada' adicionada com sucesso.
+2025-10-22 20:17:18,511 - DatabaseManager - WARNING - Tentativa de adicionar marca duplicada: 'Marca Duplicada'.
+2025-10-22 20:17:18,512 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:18,515 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:18,558 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:18,564 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:18,571 - DatabaseManager - INFO - Fornecedor 'Fornecedor Teste' adicionado com sucesso.
+2025-10-22 20:17:18,572 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:18,572 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:18,615 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:18,622 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:18,629 - DatabaseManager - INFO - Marca 'Marca Teste' adicionada com sucesso.
+2025-10-22 20:17:18,631 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:18,633 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:18,675 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:18,682 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:18,687 - DatabaseManager - INFO - Marca 'Marca Produto' adicionada com sucesso.
+2025-10-22 20:17:18,693 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:18,695 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:18,739 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:18,748 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:18,753 - DatabaseManager - INFO - Marca 'Marca para Deletar' adicionada com sucesso.
+2025-10-22 20:17:18,760 - DatabaseManager - INFO - Marca (ID: 12) deletada com sucesso.
+2025-10-22 20:17:18,760 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:18,762 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:18,823 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:18,829 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:18,837 - DatabaseManager - INFO - Marca 'Marca Imagem' adicionada com sucesso.
+2025-10-22 20:17:18,851 - DatabaseManager - INFO - Produto (ID: 1) e suas referências no DB excluídos com sucesso.
+2025-10-22 20:17:18,852 - DatabaseManager - INFO - Imagem 'MeuEstoque\product_images\test_product\dummy_image.jpg' excluída do sistema de arquivos.
+2025-10-22 20:17:18,854 - DatabaseManager - INFO - Diretório de imagens vazio 'MeuEstoque\product_images\test_product' excluído.
+2025-10-22 20:17:18,856 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:18,858 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:18,897 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:18,938 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:18,944 - DatabaseManager - INFO - Marca 'Marca Antiga' adicionada com sucesso.
+2025-10-22 20:17:18,959 - DatabaseManager - INFO - Marca (ID: 12) atualizada para 'Marca Nova'.
+2025-10-22 20:17:18,960 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:18,962 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:19,005 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:19,010 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:19,016 - DatabaseManager - INFO - Marca 'Marca Qty' adicionada com sucesso.
+2025-10-22 20:17:19,029 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:19,030 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:19,072 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:19,078 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:19,083 - DatabaseManager - INFO - Marca 'Marca Qty Saida' adicionada com sucesso.
+2025-10-22 20:17:19,098 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:19,100 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:19,140 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:19,144 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:19,151 - DatabaseManager - INFO - Marca 'Marca Qty Insuficiente' adicionada com sucesso.
+2025-10-22 20:17:19,151 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:51,444 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:55,117 - __main__ - INFO - Diretório base de imagens garantido: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images
+2025-10-22 20:17:55,117 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:55,122 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:55,130 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:55,133 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:17:55,133 - __main__ - INFO - Banco de dados inicializado e tabelas verificadas.
+2025-10-22 20:17:55,176 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:17:55,178 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:17:55,191 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:17:55,544 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:17:55,544 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:18:16,315 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:18:16,324 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:18:33,130 - DatabaseManager - INFO - Produto (ID: 16) e suas referências no DB excluídos com sucesso.
+2025-10-22 20:18:33,130 - DatabaseManager - INFO - Imagem 'C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\16\downloadaaa.jpg' excluída do sistema de arquivos.
+2025-10-22 20:18:33,130 - DatabaseManager - INFO - Diretório de imagens vazio 'C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\16' excluído.
+2025-10-22 20:18:33,875 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:18:33,886 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:18:33,886 - ProductsWidget - INFO - Produto 'aa' (ID: 16) excluído com sucesso.
+2025-10-22 20:18:52,444 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:18:52,451 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:20:58,187 - __main__ - INFO - Diretório base de imagens garantido: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images
+2025-10-22 20:20:58,187 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:20:58,187 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:20:58,202 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:20:58,206 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:20:58,206 - __main__ - INFO - Banco de dados inicializado e tabelas verificadas.
+2025-10-22 20:20:58,240 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:20:58,243 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:20:58,254 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:20:58,482 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:20:58,500 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:20:58,519 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:21:05,459 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:21:23,500 - __main__ - INFO - Diretório base de imagens garantido: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images
+2025-10-22 20:21:23,502 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:21:23,504 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:21:23,513 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:21:23,519 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:21:23,520 - __main__ - INFO - Banco de dados inicializado e tabelas verificadas.
+2025-10-22 20:21:23,560 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:21:23,564 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:21:23,577 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:21:23,806 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:21:23,812 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:21:55,364 - __main__ - INFO - Diretório base de imagens garantido: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images
+2025-10-22 20:21:55,368 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:21:55,369 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:21:55,377 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:21:55,380 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:21:55,381 - __main__ - INFO - Banco de dados inicializado e tabelas verificadas.
+2025-10-22 20:21:55,416 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:21:55,418 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:21:55,429 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:21:55,621 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:21:55,624 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:22:44,737 - __main__ - INFO - Diretório base de imagens garantido: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images
+2025-10-22 20:22:44,739 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:22:44,739 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:22:44,739 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:22:44,739 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:22:44,739 - __main__ - INFO - Banco de dados inicializado e tabelas verificadas.
+2025-10-22 20:22:44,786 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:22:44,789 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:22:44,793 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:22:45,012 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:22:45,017 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:22:46,235 - MeuEstoque.ui.product_details_window - INFO - Tentando carregar imagem: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:22:46,235 - MeuEstoque.ui.product_details_window - INFO - Imagem carregada com sucesso: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:23:04,800 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:23:10,961 - __main__ - INFO - Diretório base de imagens garantido: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images
+2025-10-22 20:23:10,961 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:23:10,961 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:23:10,977 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:23:10,980 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:23:10,980 - __main__ - INFO - Banco de dados inicializado e tabelas verificadas.
+2025-10-22 20:23:11,002 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:23:11,013 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:23:11,023 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:23:11,220 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:23:11,223 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:23:13,810 - MeuEstoque.ui.product_details_window - INFO - Tentando carregar imagem: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:23:13,814 - MeuEstoque.ui.product_details_window - INFO - Imagem carregada com sucesso: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:23:22,978 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:25:28,611 - __main__ - INFO - Diretório base de imagens garantido: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images
+2025-10-22 20:25:28,612 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:25:28,614 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:25:28,622 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:25:28,624 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:25:28,624 - __main__ - INFO - Banco de dados inicializado e tabelas verificadas.
+2025-10-22 20:25:28,657 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:25:28,657 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:25:28,674 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:25:28,906 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:25:28,911 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:25:32,357 - MeuEstoque.ui.product_details_window - INFO - Tentando carregar imagem: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:25:32,361 - MeuEstoque.ui.product_details_window - INFO - Imagem carregada com sucesso: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:25:44,844 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:28:57,524 - __main__ - INFO - Diretório base de imagens garantido: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images
+2025-10-22 20:28:57,525 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:28:57,528 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:28:57,537 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:28:57,538 - DatabaseManager - INFO - Conexão com o banco de dados fechada.
+2025-10-22 20:28:57,538 - __main__ - INFO - Banco de dados inicializado e tabelas verificadas.
+2025-10-22 20:28:57,590 - DatabaseManager - INFO - Conexão com o banco de dados estabelecida.
+2025-10-22 20:28:57,593 - DatabaseManager - INFO - Tabelas do banco de dados verificadas/criadas com sucesso.
+2025-10-22 20:28:57,603 - DatabaseManager - INFO - Marcas iniciais adicionadas/verificadas.
+2025-10-22 20:28:57,836 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:28:57,836 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:29:02,441 - MeuEstoque.ui.product_details_window - INFO - Tentando carregar imagem: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:29:02,446 - MeuEstoque.ui.product_details_window - INFO - Imagem carregada com sucesso: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:29:02,458 - MeuEstoque.ui.product_details_window - INFO - Tentando carregar imagem: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:29:02,460 - MeuEstoque.ui.product_details_window - INFO - Imagem carregada com sucesso: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:29:07,094 - MeuEstoque.ui.product_details_window - INFO - Tentando carregar imagem: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:29:07,094 - MeuEstoque.ui.product_details_window - INFO - Imagem carregada com sucesso: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:29:07,094 - MeuEstoque.ui.product_details_window - INFO - Tentando carregar imagem: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:29:07,094 - MeuEstoque.ui.product_details_window - INFO - Imagem carregada com sucesso: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:29:20,140 - root - ERROR - Erro: Arquivo de imagem original não encontrado: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\download.jpg
+2025-10-22 20:29:20,911 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:29:20,926 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:29:21,683 - MeuEstoque.ui.product_details_window - INFO - Tentando carregar imagem: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\downloadaaa.jpg
+2025-10-22 20:29:21,688 - MeuEstoque.ui.product_details_window - INFO - Imagem carregada com sucesso: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\downloadaaa.jpg
+2025-10-22 20:29:21,691 - MeuEstoque.ui.product_details_window - INFO - Tentando carregar imagem: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\downloadaaa.jpg
+2025-10-22 20:29:21,691 - MeuEstoque.ui.product_details_window - INFO - Imagem carregada com sucesso: C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\downloadaaa.jpg
+2025-10-22 20:29:33,637 - DatabaseManager - INFO - Produto (ID: 17) e suas referências no DB excluídos com sucesso.
+2025-10-22 20:29:33,637 - DatabaseManager - INFO - Imagem 'C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17\downloadaaa.jpg' excluída do sistema de arquivos.
+2025-10-22 20:29:33,637 - DatabaseManager - INFO - Diretório de imagens vazio 'C:\Users\1-23-16114\Desktop\Nova pasta\NovoGestor\MeuEstoque\product_images\17' excluído.
+2025-10-22 20:29:34,510 - ProductsWidget - INFO - Carregando todos os dados para ProductsWidget...
+2025-10-22 20:29:34,523 - ProductsWidget - INFO - Dados de ProductsWidget carregados com sucesso.
+2025-10-22 20:29:34,523 - ProductsWidget - INFO - Produto 'aa' (ID: 17) excluído com sucesso.
+2025-10-22 20:29:38,344 - DatabaseManager - INFO - Conexão com o banco de dados fechada.

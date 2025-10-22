@@ -1,11 +1,14 @@
 import sqlite3
+import os
 from datetime import datetime
+from MeuEstoque.logger import get_logger
 
 class DatabaseManager:
     def __init__(self, db_name="estoque.db"):
         self.db_name = db_name
         self.conn = None
         self.cursor = None
+        self.logger = get_logger(self.__class__.__name__)
         self._connect()
         self._create_tables()
         self._add_initial_brands()
@@ -14,7 +17,9 @@ class DatabaseManager:
         try:
             self.conn = sqlite3.connect(self.db_name)
             self.cursor = self.conn.cursor()
+            self.logger.info("Conexão com o banco de dados estabelecida.")
         except sqlite3.Error as e:
+            self.logger.critical(f"Erro ao conectar ao banco de dados: {e}", exc_info=True)
             print(f"Erro ao conectar ao banco de dados: {e}")
 
     def _create_tables(self):
@@ -117,7 +122,9 @@ class DatabaseManager:
                 )
             """)
             self.conn.commit()
+            self.logger.info("Tabelas do banco de dados verificadas/criadas com sucesso.")
         except sqlite3.Error as e:
+            self.logger.critical(f"Erro ao criar tabelas: {e}", exc_info=True)
             print(f"Erro ao criar tabelas: {e}")
 
     def _add_initial_brands(self):
@@ -130,23 +137,29 @@ class DatabaseManager:
             try:
                 self.cursor.execute("INSERT OR IGNORE INTO marcas (nome) VALUES (?)", (brand_name,))
             except sqlite3.Error as e:
+                self.logger.warning(f"Erro ao adicionar marca inicial '{brand_name}': {e}")
                 print(f"Erro ao adicionar marca inicial '{brand_name}': {e}")
         self.conn.commit()
+        self.logger.info("Marcas iniciais adicionadas/verificadas.")
 
     def close(self):
         if self.conn:
             self.conn.close()
+            self.logger.info("Conexão com o banco de dados fechada.")
 
     # Métodos para Marcas
     def add_marca(self, nome):
         try:
             self.cursor.execute("INSERT INTO marcas (nome) VALUES (?)", (nome,))
             self.conn.commit()
+            self.logger.info(f"Marca '{nome}' adicionada com sucesso.")
             return True
         except sqlite3.IntegrityError:
+            self.logger.warning(f"Tentativa de adicionar marca duplicada: '{nome}'.")
             print(f"Marca '{nome}' já existe.")
             return False
         except sqlite3.Error as e:
+            self.logger.error(f"Erro ao adicionar marca '{nome}': {e}", exc_info=True)
             print(f"Erro ao adicionar marca: {e}")
             return False
 
@@ -154,30 +167,39 @@ class DatabaseManager:
         try:
             self.cursor.execute("UPDATE marcas SET nome = ? WHERE id = ?", (novo_nome, marca_id))
             self.conn.commit()
+            self.logger.info(f"Marca (ID: {marca_id}) atualizada para '{novo_nome}'.")
             return True
         except sqlite3.IntegrityError:
+            self.logger.warning(f"Tentativa de atualizar marca para nome duplicado: '{novo_nome}'.")
             print(f"Marca '{novo_nome}' já existe.")
             return False
         except sqlite3.Error as e:
+            self.logger.error(f"Erro ao atualizar marca (ID: {marca_id}) para '{novo_nome}': {e}", exc_info=True)
             print(f"Erro ao atualizar marca: {e}")
             return False
 
     def get_marcas(self):
         self.cursor.execute("SELECT id, nome FROM marcas ORDER BY nome")
-        return self.cursor.fetchall()
+        marcas = self.cursor.fetchall()
+        self.logger.debug(f"Retornadas {len(marcas)} marcas.")
+        return marcas
 
     def delete_marca(self, marca_id):
         try:
             self.cursor.execute("DELETE FROM marcas WHERE id = ?", (marca_id,))
             self.conn.commit()
+            self.logger.info(f"Marca (ID: {marca_id}) deletada com sucesso.")
             return True
         except sqlite3.Error as e:
+            self.logger.error(f"Erro ao deletar marca (ID: {marca_id}): {e}", exc_info=True)
             print(f"Erro ao deletar marca: {e}")
             return False
 
     def marca_has_products(self, marca_id):
         self.cursor.execute("SELECT COUNT(*) FROM produtos WHERE marca_id = ?", (marca_id,))
-        return self.cursor.fetchone()[0] > 0
+        count = self.cursor.fetchone()[0]
+        self.logger.debug(f"Marca (ID: {marca_id}) tem {count} produtos associados.")
+        return count > 0
 
     # Métodos para Fornecedores
     def add_fornecedor(self, nome, contato, telefone, email, endereco):
@@ -187,11 +209,14 @@ class DatabaseManager:
                 (nome, contato, telefone, email, endereco)
             )
             self.conn.commit()
+            self.logger.info(f"Fornecedor '{nome}' adicionado com sucesso.")
             return True
         except sqlite3.IntegrityError:
+            self.logger.warning(f"Tentativa de adicionar fornecedor duplicado: '{nome}'.")
             print(f"Fornecedor '{nome}' já existe.")
             return False
         except sqlite3.Error as e:
+            self.logger.error(f"Erro ao adicionar fornecedor '{nome}': {e}", exc_info=True)
             print(f"Erro ao adicionar fornecedor: {e}")
             return False
 
@@ -301,14 +326,43 @@ class DatabaseManager:
         try:
             self.conn.execute("BEGIN TRANSACTION")
             
+            # 1. Obter caminhos das imagens associadas ao produto
+            image_paths = self.get_product_images(produto_id)
+            
+            # 2. Excluir entradas relacionadas ao produto nas tabelas
             self.cursor.execute("DELETE FROM itens_compra WHERE produto_id = ?", (produto_id,))
             self.cursor.execute("DELETE FROM movimentacoes WHERE produto_id = ?", (produto_id,))
             self.cursor.execute("DELETE FROM product_images WHERE product_id = ?", (produto_id,))
             self.cursor.execute("DELETE FROM produtos WHERE id = ?", (produto_id,))
+            
             self.conn.commit()
+            self.logger.info(f"Produto (ID: {produto_id}) e suas referências no DB excluídos com sucesso.")
+
+            # 3. Excluir arquivos de imagem do sistema de arquivos
+            for path in image_paths:
+                if os.path.exists(path):
+                    try:
+                        os.remove(path)
+                        self.logger.info(f"Imagem '{path}' excluída do sistema de arquivos.")
+                        
+                        # Tentar remover o diretório pai se estiver vazio
+                        image_dir = os.path.dirname(path)
+                        if os.path.exists(image_dir) and not os.listdir(image_dir):
+                            try:
+                                os.rmdir(image_dir)
+                                self.logger.info(f"Diretório de imagens vazio '{image_dir}' excluído.")
+                            except OSError as dir_error:
+                                self.logger.error(f"Erro ao excluir diretório de imagem vazio '{image_dir}': {dir_error}", exc_info=True)
+                    except OSError as file_error:
+                        self.logger.error(f"Erro ao excluir arquivo de imagem '{path}': {file_error}", exc_info=True)
+                        # Não faz rollback aqui, pois o DB já foi atualizado. Apenas loga o erro.
+                else:
+                    self.logger.warning(f"Tentativa de excluir imagem '{path}', mas o arquivo não foi encontrado.")
+
             return True
         except sqlite3.Error as e:
             self.conn.rollback()
+            self.logger.error(f"Erro ao deletar produto (ID: {produto_id}) do banco de dados: {e}", exc_info=True)
             print(f"Erro ao deletar produto: {e}")
             return False
 

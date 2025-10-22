@@ -16,6 +16,10 @@ from MeuEstoque.ui.product_details_window import ProductDetailsWindow
 from MeuEstoque.ui.manage_suppliers_window import ManageSuppliersWindow
 from MeuEstoque.ui.view_purchases_window import ViewPurchasesWindow
 from MeuEstoque.ui.manage_accounts_payable_window import ManageAccountsPayableWindow
+from MeuEstoque.config import HELP_TEXTS
+from MeuEstoque.logger import get_logger
+
+logger = get_logger(__name__)
 
 # Importar as classes das janelas que serão convertidas em widgets
 # Por enquanto, vamos manter as janelas como estão e adaptá-las para serem usadas como widgets
@@ -26,11 +30,19 @@ class ProductsWidget(QWidget):
     def __init__(self, db_manager, parent=None):
         super().__init__(parent)
         self.db = db_manager
+        self.logger = get_logger(self.__class__.__name__) # Logger para ProductsWidget
         self._setup_ui()
         self._load_all_data()
 
     def _setup_ui(self):
         main_layout = QVBoxLayout(self)
+
+        # Loading indicator
+        self.loading_label = QLabel("Carregando dados...")
+        self.loading_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.loading_label.setStyleSheet("color: gray; font-style: italic;")
+        self.loading_label.hide() # Hidden by default
+        main_layout.addWidget(self.loading_label)
 
         # Layout de busca
         search_layout = QHBoxLayout()
@@ -99,8 +111,13 @@ class ProductsWidget(QWidget):
         main_layout.addWidget(dashboard_group)
 
     def _load_all_data(self):
+        self.logger.info("Carregando todos os dados para ProductsWidget...")
+        self.loading_label.show() # Show loading indicator
+        QApplication.processEvents() # Process events to update UI
         self._load_products_data()
         self._load_dashboard_stats()
+        self.loading_label.hide() # Hide loading indicator
+        self.logger.info("Dados de ProductsWidget carregados com sucesso.")
 
     def _load_products_data(self):
         search_term = self.search_input.text()
@@ -206,14 +223,18 @@ class ProductsWidget(QWidget):
                     QMessageBox.information(self, "Sucesso", f"Produto '{product_name}' excluído com sucesso!")
                     self.product_table.clearSelection() # Limpa a seleção
                     self._load_all_data() # Recarrega os dados
+                    self.logger.info(f"Produto '{product_name}' (ID: {product_id}) excluído com sucesso.")
                 else:
                     QMessageBox.critical(self, "Erro", f"Não foi possível excluir o produto '{product_name}'.")
+                    self.logger.warning(f"Falha ao excluir produto '{product_name}' (ID: {product_id}).")
             except Exception as e:
                 QMessageBox.critical(self, "Erro", f"Ocorreu um erro ao excluir o produto: {e}")
+                self.logger.error(f"Erro ao excluir produto '{product_name}' (ID: {product_id}): {e}", exc_info=True)
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.logger = get_logger(self.__class__.__name__) # Logger para MainWindow
         self.setWindowTitle("MeuEstoque - Sistema de Gestão de Estoque")
         self.setGeometry(100, 100, 1200, 700) # Aumentar o tamanho da janela principal
 
@@ -223,11 +244,34 @@ class MainWindow(QMainWindow):
 
         self._setup_ui()
         # self._load_all_data() # Não é mais necessário aqui, cada widget carregará seus próprios dados
+        self._setup_help_texts() # Setup help texts
 
     def _setup_ui(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
-        main_layout = QHBoxLayout(central_widget) # Layout principal horizontal
+        
+        # Main vertical layout for header and content
+        overall_layout = QVBoxLayout(central_widget)
+
+        # Header layout for title and help button
+        header_layout = QHBoxLayout()
+        self.title_label = QLabel("MeuEstoque - Sistema de Gestão de Estoque")
+        self.title_label.setObjectName("mainTitle")
+        self.title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        header_layout.addWidget(self.title_label)
+
+        self.help_button = QPushButton("")
+        self.help_button.setIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_MessageBoxQuestion))
+        self.help_button.setFixedSize(30, 30)
+        self.help_button.clicked.connect(self._show_help)
+        header_layout.addWidget(self.help_button)
+        header_layout.setAlignment(self.help_button, Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignTop)
+
+        overall_layout.addLayout(header_layout)
+
+        # Content layout (sidebar + stacked widget)
+        content_layout = QHBoxLayout()
+        overall_layout.addLayout(content_layout)
 
         # Menu Lateral
         self.sidebar = QListWidget()
@@ -242,11 +286,11 @@ class MainWindow(QMainWindow):
         self.sidebar.addItem(QListWidgetItem(QIcon(self.style().standardIcon(QStyle.StandardPixmap.SP_DialogYesButton)), "Contas a Pagar"))
         
         self.sidebar.currentRowChanged.connect(self._change_page)
-        main_layout.addWidget(self.sidebar)
+        content_layout.addWidget(self.sidebar)
 
         # Área de Conteúdo Principal (Stacked Widget)
         self.content_area = QStackedWidget()
-        main_layout.addWidget(self.content_area)
+        content_layout.addWidget(self.content_area)
 
         # Adicionar os widgets para cada módulo
         self.products_widget = ProductsWidget(self.db, self)
@@ -284,6 +328,15 @@ class MainWindow(QMainWindow):
 
         # Definir a página inicial
         self.sidebar.setCurrentRow(0)
+
+    def _setup_help_texts(self):
+        self.help_texts = HELP_TEXTS
+
+    def _show_help(self):
+        current_page_index = self.content_area.currentIndex()
+        current_page_name = self.sidebar.item(current_page_index).text()
+        help_message = self.help_texts.get(current_page_name, "Nenhuma informação de ajuda disponível para esta seção.")
+        QMessageBox.information(self, f"Ajuda - {current_page_name}", help_message)
 
     def _change_page(self, index):
         self.content_area.setCurrentIndex(index)

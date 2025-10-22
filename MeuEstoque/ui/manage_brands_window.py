@@ -4,6 +4,7 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import Qt, pyqtSignal
 from MeuEstoque.database.database_manager import DatabaseManager
+from MeuEstoque.logger import get_logger
 
 class ManageBrandsWindow(QWidget):
     brands_changed = pyqtSignal()
@@ -11,6 +12,7 @@ class ManageBrandsWindow(QWidget):
     def __init__(self, db_manager, parent=None):
         super().__init__(parent)
         self.db = db_manager
+        self.logger = get_logger(self.__class__.__name__)
         self.current_brand_id = None
 
         self.setStyleSheet(open("MeuEstoque/ui/styles.qss").read())
@@ -181,18 +183,22 @@ class ManageBrandsWindow(QWidget):
             # Adicionando nova marca
             if self.db.add_marca(brand_name):
                 QMessageBox.information(self, "Sucesso", f"Marca '{brand_name}' adicionada com sucesso!")
+                self.logger.info(f"Marca '{brand_name}' adicionada com sucesso.")
                 self._cancel_edit()
                 self._load_brands()
             else:
                 QMessageBox.critical(self, "Erro", f"Não foi possível adicionar a marca '{brand_name}'.")
+                self.logger.warning(f"Falha ao adicionar marca '{brand_name}'.")
         else:
             # Atualizando marca existente
             if self.db.update_marca(self.current_brand_id, brand_name):
                 QMessageBox.information(self, "Sucesso", f"Marca atualizada com sucesso para '{brand_name}'!")
+                self.logger.info(f"Marca (ID: {self.current_brand_id}) atualizada para '{brand_name}'.")
                 self._cancel_edit()
                 self._load_brands()
             else:
                 QMessageBox.critical(self, "Erro", f"Não foi possível atualizar a marca.")
+                self.logger.warning(f"Falha ao atualizar marca (ID: {self.current_brand_id}) para '{brand_name}'.")
 
     def _delete_brand(self):
         try:
@@ -228,12 +234,15 @@ class ManageBrandsWindow(QWidget):
             
             if self.db.delete_marca(brand_id):
                 QMessageBox.information(self, "Sucesso", f"Marca '{brand_name}' excluída com sucesso!")
+                self.logger.info(f"Marca '{brand_name}' (ID: {brand_id}) excluída com sucesso.")
                 self._cancel_edit()
                 self._load_brands()
             else:
                 QMessageBox.critical(self, "Erro", f"Não foi possível excluir a marca '{brand_name}'.")
+                self.logger.warning(f"Falha ao excluir marca '{brand_name}' (ID: {brand_id}).")
         except Exception as e:
             QMessageBox.critical(self, "Erro", f"Ocorreu um erro ao excluir a marca: {str(e)}")
+            self.logger.error(f"Erro ao excluir marca (ID: {brand_id}): {e}", exc_info=True)
 
     def _cancel_edit(self):
         self.brand_name_input.clear()

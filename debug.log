@@ -109,3 +109,6 @@
 2025-10-21 00:40:09,591 - DEBUG - AddProductWindow inicializada em modo de adição.
 2025-10-21 00:40:09,594 - DEBUG - Marcas carregadas: [(1205, 'Audi'), (1204, 'BMW'), (1194, 'Chevrolet'), (1196, 'Fiat'), (1042, 'Ford'), (1200, 'Honda'), (1198, 'Hyundai'), (1202, 'Jeep'), (1052, 'Kia'), (1203, 'Mercedes-Benz'), (1206, 'Nissan'), (1208, 'Peugeot'), (1201, 'Renault'), (1199, 'Toyota'), (1195, 'Volkswagen')]
 2025-10-21 00:40:26,238 - DEBUG - Produto salvo com ID: 13
+2025-10-22 19:38:18,200 - DEBUG - AddProductWindow inicializada em modo de adição.
+2025-10-22 19:38:18,200 - DEBUG - Marcas carregadas: [(1205, 'Audi'), (1204, 'BMW'), (1194, 'Chevrolet'), (1196, 'Fiat'), (1042, 'Ford'), (1200, 'Honda'), (1198, 'Hyundai'), (1202, 'Jeep'), (1052, 'Kia'), (1203, 'Mercedes-Benz'), (1206, 'Nissan'), (1208, 'Peugeot'), (1201, 'Renault'), (1199, 'Toyota'), (1195, 'Volkswagen')]
+2025-10-22 19:38:30,916 - DEBUG - Produto salvo com ID: 14
